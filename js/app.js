@@ -63,7 +63,7 @@ function choice(e){
 	function ducklingChoice(e) {
 	 	this.e=e;
 	 	cleanbubble();
-		$('<div class="speakbubble choice"><button onClick="eatFish(e)">Eat</button> <button onClick="passFish(e)">Pass to Others</button></div>').insertBefore(e);
+		$('<div class="speakbubble choice"><button onClick="eatFish(e)">Eat</button> <button onClick="passFish(e)">Feed Others</button></div>').insertBefore(e);
 	}
 	if ( $(e).hasClass("duckegg")) {eggChoice(e);}
 	else if ($(e).hasClass("hatched") && $(e).hasClass("hasfish")) {ducklingChoice(e);}
