@@ -154,7 +154,8 @@ function sellEgg(e) {
   		money+=1;
   		releaseCoin.bronze();
   	}
-  	$('#moneybag').html(money);
+  	setTimeout(function(){
+  	$('#moneybag').html(money);},600);
 }
 var releaseCoin ={
 
