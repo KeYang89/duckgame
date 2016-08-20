@@ -635,7 +635,7 @@ position:absolute; left:0px; top:0px; display:block; height:15px; width:20px;  b
 .speakbubble{
     position: absolute;
     padding: 15px;
-    margin: -4em 0 0 -2em;
+    margin: -8em 0 0 -2em;
     font-family: Arial;
     border: 5px solid #5a8f00;
     color: #333;
