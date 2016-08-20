@@ -78,6 +78,7 @@ function hatchEgg(e) {
     	$(e).attr('src',imgUrlegg);
     	$(e).removeAttr('id');
     	$(e).removeClass('duckegg');
+    	$(e).removeClass('newegg');
     	$(e).addClass("hatched");
     	$(e).addClass("nofish");
     	duckling(e);
