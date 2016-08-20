@@ -192,7 +192,7 @@ function layEgg(e) {
  	$(e).addClass("mature");
  	$('<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>').appendTo('.ducks-offspring'); 
 	}
-	$('newegg').shake(200,e,4,100);
+	$('.newegg').shake(200,e,4,100);
 }
 function passFish(e) {
 	$('.choice').remove();
