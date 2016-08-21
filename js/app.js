@@ -1,21 +1,28 @@
 var hatchtime=2100;
 var bubbletime=2700;
-var money = 15;
+var money = 25;
 var count=0;
+var row=0;
 $('#moneybag').html(money);//init
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
-
-function goodies(){
+function elixirinfo(){
+	$('#elixirinfo').show();
+	$('#elixirinfo').fadeOut(3000);
+	
+}
+function fishfoodinfo(){
 }
 
 function elixir(){
 	cleanbubble();
+	$('#elixirinfo').remove();
 	if (money>=20){
 	money=money-20;
  	$('#elixir').addClass('rotated');
  	$('.bottle_top').addClass('rotatespin');
  	$('.bottle_inner>.water').addClass('pour');
  	$('#moneybag').html(money);
+ 	$('<div class="waterout"><div class="clover dropleave"><div class="leaves"><i class="leave angleN"></i><i class="leave angleS"></i><i class="leave angleW"></i><i class="leave angleE"></i></div><i class="branch"></i></div><div class="dropleave"><div class="jellyfish"><div class="jellyfish_head"></div><div class="jellyfish_tail"><div class="jellyfish_tail_in"></div></div></div></div>').insertAfter('#elixir');
  	setTimeout(function(){
 					 	$('#elixir').removeClass('rotated');
  						$('.bottle_top').removeClass('rotatespin');
@@ -125,12 +132,14 @@ function ducklingtip(e){
   case 1:
  		tip('<div class="speakbubble">I can catch fish! I can grow!</div>',e);
 		count++;
+		break;
   case 2:
   		tip('<div class="speakbubble">When I grow up I can lay eggs! Kwak!</div>',e);
   		count++;
+  		break;
   default:
   		tip('<div class="speakbubble">I can also feed my friends, and fish...</div>',e);
-
+  		break;
  }
   setTimeout(function(){
   		$('.speakbubble').remove()
@@ -159,7 +168,6 @@ function sellEgg(e) {
   	$('#moneybag').html(money);},600);
 }
 var releaseCoin ={
-
  	bronze: function() { tip('<div class="coin bronze"><p>1</p></div>',$('#moneybag'));},
     silver: function() {tip('<div class="coin silver"><p>2</p></div>',$('#moneybag'));},
  	gold: function() {tip('<div class="coin gold"><p>5</p></div>',$('#moneybag'));}

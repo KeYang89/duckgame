@@ -2,7 +2,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Swimming fish animation</title>
+    <title>Duck Game</title>
     <link rel="stylesheet" href="css/style.css">
 
   </head>
@@ -15,10 +15,11 @@
   </div>
    <div class="goodieswrap">
     <div id="fishfood"></div>
-    <div id="elixir" onClick="elixir()">
-
+    <div id="elixir" onClick="elixir()" onmouseover="elixirinfo()">
+<div id="elixirinfo" style="display: none;">We can attract rare fish</div>
     <div class="bottle">
         <div class="bottle_top">
+        <div class="bottletag">elixir</div>
             <div class="bottle_mouth"></div>
             <div class="highlight"></div>
         </div>
@@ -56,7 +57,7 @@
                         <div class="jellyfish_head"></div>
                         <div class="jellyfish_tail">
                         <div class="jellyfish_tail_in"></div>
-                        </div>
+                    </div>
                         
                     </div>    
                         
@@ -71,7 +72,7 @@
 </div>
   </div>
   <div class="ducks-offspring"></div>
-  <div class="ducks-init">
+  <div class="ducks-init row0">
 <div class="eggwrap"><img draggable="true" src="img/egg-female.png" class="duckegg" id="duckegg1" onClick="choice(this)"></div>
 <div class="eggwrap"><img draggable="true" src="img/egg-male.png" class="duckegg" id="duckegg2" onClick="choice(this)"></div>
   </div>
