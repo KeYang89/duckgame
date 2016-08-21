@@ -4,6 +4,7 @@ var money = 25;
 var count=0;
 var row=0;
 $('#moneybag').html(money);//init
+$('<div class="speakbubble small">Hey, I\'m your moneybag!</div>').insertBefore('#moneybag');
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
 function elixirinfo(){
 	$('#elixirinfo').show();
