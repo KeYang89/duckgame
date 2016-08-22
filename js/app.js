@@ -8,12 +8,15 @@ $('<div class="speakbubble small">Hey, I\'m your moneybag!</div>').insertBefore(
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
 function elixirinfo(){
 	$('#elixirinfo').show();
-	$('#elixirinfo').fadeOut(3000);
-	
+	$('#elixirinfo').fadeOut(3000);	
 }
-function fishfoodinfo(){
+function shrimpinfo(){
+	$('#shrimpinfo').show();
+	$('#shrimpinfo').fadeOut(3000);	
 }
+function shrimp(){
 
+}
 function elixir(){
 	cleanbubble();
 	$('#elixirinfo').remove();

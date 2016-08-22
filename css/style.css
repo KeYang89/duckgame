@@ -48,6 +48,63 @@ button {
     border-radius: 12px;
     z-index: -1;
 }
+#shrimpwrap{
+    position: absolute;
+    right: 200px;
+    background: rgba(244,244,244,0.2);
+    width: 60px;
+    height: 80px;
+    top: 60px;
+    padding-top: 10px;
+    text-align: center;
+    box-shadow: 2px 0px 0px rgba(114,214,214,0.2),2px -2px 0px rgba(120,204,204,0.1);
+    z-index: 999;
+}
+.shrimp {
+  border-radius: 60%/30% 40% 10% 70%;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjEwMCUiIGN5PSI1MCUiIHI9IjkwJSI+PHN0b3Agb2Zmc2V0PSI2NyUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PHN0b3Agb2Zmc2V0PSI2OCUiIHN0b3AtY29sb3I9IiNjYzRhMDQiLz48c3RvcCBvZmZzZXQ9Ijc0JSIgc3RvcC1jb2xvcj0iI2VmNjkyMSIvPjxzdG9wIG9mZnNldD0iODUlIiBzdG9wLWNvbG9yPSIjZWY2OTIxIi8+PHN0b3Agb2Zmc2V0PSI4NiUiIHN0b3AtY29sb3I9IiMyMTIxMjEiIHN0b3Atb3BhY2l0eT0iMC4yIi8+PHN0b3Agb2Zmc2V0PSI5MCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -webkit-radial-gradient(center right, circle, rgba(0, 0, 0, 0) 67%, #cc4a04 68%, #ef6921 74%, #ef6921 85%, rgba(33, 33, 33, 0.2) 86%, rgba(0, 0, 0, 0) 90%);
+  background-image: -webkit-radial-gradient(center right circle, rgba(0, 0, 0, 0) 67%, #cc4a04 68%, #ef6921 74%, #ef6921 85%, rgba(33, 33, 33, 0.2) 86%, rgba(0, 0, 0, 0) 90%);
+  background-image: radial-gradient(circle at center right, rgba(0, 0, 0, 0) 67%, #cc4a04 68%, #ef6921 74%, #ef6921 85%, rgba(33, 33, 33, 0.2) 86%, rgba(0, 0, 0, 0) 90%);
+  position: absolute;
+  top: 68px;
+  left: -150px;
+  display: block;
+  width: 86px;
+  height: 70px;
+  z-index: 1;
+}
+.shrimp:before {
+  content: '';
+  -webkit-transform: rotate(24deg);
+  transform: rotate(24deg);
+  border-radius: 85% 85% 50% 50%/120% 120% 50% 50%;
+  box-shadow: 1px -35px 0 -7px #EF6921, 0 -36px 1px -7px rgba(33, 33, 33, 0.2), 5px -23px 0 -8px #EF6921, 5px -23px 1px -7px rgba(33, 33, 33, 0.2), 0 -2px 0 0 rgba(222, 222, 222, 0.3) inset, -2px 1px 2px rgba(33, 33, 33, 0.2);
+  position: absolute;
+  top: -24px;
+  left: 15px;
+  display: block;
+  width: 18px;
+  height: 45px;
+  background: #EF6921;
+}
+.shrimp:after {
+  content: '';
+  border-radius: 50%;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjAlIiByPSIzNiUiPjxzdG9wIG9mZnNldD0iMzUlIiBzdG9wLWNvbG9yPSIjZWY2OTIxIi8+PHN0b3Agb2Zmc2V0PSIzNiUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC4wIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g'), url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjAlIiBjeT0iNTAlIiByPSIzOCUiPjxzdG9wIG9mZnNldD0iMjclIiBzdG9wLWNvbG9yPSIjZWY2OTIxIi8+PHN0b3Agb2Zmc2V0PSIzNyUiIHN0b3AtY29sb3I9IiNjYzRhMDQiLz48c3RvcCBvZmZzZXQ9IjM4JSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background-size: 100%;
+  background-image: -webkit-radial-gradient(top center, circle, #ef6921 35%, rgba(0, 0, 0, 0) 36%), -webkit-radial-gradient(center left, circle, #ef6921 27%, #cc4a04 37%, rgba(0, 0, 0, 0) 38%);
+  background-image: -webkit-radial-gradient(top center circle, #ef6921 35%, rgba(0, 0, 0, 0) 36%), -webkit-radial-gradient(center left circle, #ef6921 27%, #cc4a04 37%, rgba(0, 0, 0, 0) 38%);
+  background-image: radial-gradient(circle at top center, #ef6921 35%, rgba(0, 0, 0, 0) 36%), radial-gradient(circle at center left, #ef6921 27%, #cc4a04 37%, rgba(0, 0, 0, 0) 38%);
+  box-shadow: -13px -86px 0 -9px rgba(222, 222, 222, 0.5), -14px -85px 0 -7px #212121;
+  position: absolute;
+  top: 60px;
+  left: 25px;
+  display: block;
+  width: 22px;
+  height: 22px;
+}
 .coin p{
   font-family: georgia;
   font-style: italic;
@@ -337,7 +394,7 @@ position: relative !important;
 .bottle_mouth{height:52px; width:44px; margin:0px auto; position:relative; background:none; border:1px solid rgba(0,0,0,0.04); border-top:none; border-bottom:none; background:linear-gradient(left,rgba(255,255,255,0.3),rgba(255,255,255,0) 5%,rgba(255,255,255,0) 95%,rgba(255,255,255,0.3)); box-shadow:0px 0px 6px rgba(255,255,255,0.3);}
 .bottle_mouth:after{content:''; display:block; height:6px; width:44px; border-radius:25px/6px; border:1px solid rgba(255,255,255,0.4);position:absolute; left:-1px;top:-4px; z-index:1; box-shadow:0px 0px 3px rgba(255,255,255,0.3);}
 
-.bottle_inner{overflow: hidden;height:99px; width:92%; margin:0px auto; border-radius:10px 10px 20px 20px/10px; border:1px solid rgba(0,0,0,0.01); border-top:1px solid rgba(255,255,255,0.3);  border-bottom-width:0.5px; position:relative; box-shadow:0px 0px 2px rgba(255,255,255,0.5) inset,0px 0px 8px rgba(255,255,255,0.6) inset,0px 0px 5px rgba(255,255,255,0.5); position:relative; top:1px;}
+.bottle_inner{overflow: hidden;height:99px; width:92%; margin:0px auto; border-radius:10px 10px 20px 20px/10px; border:1px solid rgba(0,0,0,0.01); border-top:1px solid rgba(255,255,255,0.3);  border-bottom-width:0.5px; box-shadow:0px 0px 2px rgba(255,255,255,0.5) inset,0px 0px 8px rgba(255,255,255,0.6) inset,0px 0px 5px rgba(255,255,255,0.5); position:relative; top:1px;}
 .bottle_inner:before{content:''; display:block; border-radius:40px/4px; position:absolute; top:90px; width:90%; left:3px; height:9px;}
 
 .bottle_top .highlight{ display:block; height:30px; width:20px; position:absolute; left:5px; top:5px; transform:skew(0deg,5deg);
