@@ -1725,8 +1725,7 @@ div #fish6{
   position:absolute;
   top:50%; left:50%;
 }
-/*------------------------------------------------------ bird wings
-*/
+/* bird wings*/
 .seagull:after{
   box-shadow: inset 0px 5px 0 white !important;
 }
@@ -1739,8 +1738,7 @@ div #fish6{
   animation:alas 10s linear infinite;
 }
 
-/*------------------------------------------------------ bird beak
-*/
+/* bird beak*/
 
 #birds > div:before{
   background:#FFC37F;
@@ -1750,8 +1748,7 @@ div #fish6{
   transform:rotateZ(45deg);
 }
 
-/*------------------------------------------------------ wings animation
-*/
+/* wings animation*/
 
 @keyframes alas {
   50%{
@@ -1759,8 +1756,7 @@ div #fish6{
   }
 }
 
-/*------------------------------------------------------ bird animation
-*/
+/* bird animation*/
 
 @keyframes planeo {
 
@@ -1774,4 +1770,26 @@ div #fish6{
 
   }
 
+}
+
+/*grass*/
+.grass > div {
+  animation:breeze 8s cubic-bezier(.8,-0.5,.25,1.5) infinite;
+  background-color:#0b0;
+  border-right:solid 5px #0c0;
+  border-top-right-radius:100%;
+  bottom:0;
+  position:absolute;
+  transform-origin:bottom;
+  transition:all 100ms ease-in-out;
+  width:3px;
+}
+
+@keyframes breeze {
+  0%, 100% {
+    transform:auto;
+  }
+  50% {
+    transform:rotate(5deg);
+  }
 }

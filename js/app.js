@@ -6,6 +6,25 @@ var row=0;
 $('#moneybag').html(money);//init
 $('<div class="speakbubble small">Hey, I\'m your moneybag!</div>').insertBefore('#moneybag');
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
+//set seagrass
+var numberOfBlades = 200;
+var grass = document.getElementsByClassName('grass')[0];
+function assignRandomStyles(blade) {
+  var randomHeight =  Math.floor(Math.random() * 20);
+  var randomLeft = Math.floor(Math.random() * (window.innerWidth - 8));
+  var randomRotation = Math.floor(Math.random() * 10) - 5;
+  blade.style.height = (randomHeight + 10) + 'px';
+  blade.style.zIndex = randomHeight;
+  blade.style.opacity = randomHeight * 0.02;
+  blade.style.left = randomLeft + 'px';
+  blade.style.transform = 'rotate(' + randomRotation + 'deg)';
+}
+for (var i = 0; i < numberOfBlades; i++) {
+  var blade = document.createElement('div');
+  assignRandomStyles(blade);
+  grass.appendChild(blade);
+}
+//end of seagrass setting
 function elixirinfo(){
 	$('#elixirinfo').show();
 	$('#elixirinfo').fadeOut(3000);	
