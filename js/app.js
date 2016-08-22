@@ -14,8 +14,43 @@ function shrimpinfo(){
 	$('#shrimpinfo').show();
 	$('#shrimpinfo').fadeOut(3000);	
 }
+function owlinfo(){
+	$('#owlinfo').show();
+	$('#owlinfo').fadeOut(3000);	
+}
+function owl(){
+	cleanbubble();
+	$('#owlinfo').remove();
+	if (money>=2){
+	money=money-2;
+$('#wind').show();
+$('.raven').remove();
+$('.owlwrap').hide();
+$('#moneybag').html(money);
+setTimeout(function(){
+					$('#wind').hide();
+					$('<div class="raven">..</div>').appendTo('#birds');
+					$('.owlwrap').show();}, 8000);
+	}
+	else {
+		$('<div class="speakbubble small hint">Shrimp costs $5<br>Try something else!</div>').insertBefore('#moneybag');
+	}
+}
 function shrimp(){
-
+cleanbubble();
+$('#shrimpinfo').remove();
+if (money>=5){
+	money=money-5;
+$('.shrimpwrap').addClass('rotatebag');
+$('.shrimp').addClass('rotatedrop');
+$('#moneybag').html(money);
+setTimeout(function(){
+					$('.shrimpwrap').removeClass('rotatebag');
+					$('.shrimp').removeClass('rotatedrop');}, 1600);
+	}
+	else {
+		$('<div class="speakbubble small hint">Shrimp costs $5<br>Try something else!</div>').insertBefore('#moneybag');
+	}
 }
 function elixir(){
 	cleanbubble();
@@ -33,7 +68,7 @@ function elixir(){
  						$('.bottle_inner>.water').removeClass('pour');}, 3000);
 	}
 	else {
-		$('<div class="speakbubble small hint">Elixir costs 20$<br>Try something else!</div>').insertBefore('#moneybag');
+		$('<div class="speakbubble small hint">Elixir costs $20<br>Try something else!</div>').insertBefore('#moneybag');
 	}
 }
 function birds(){
@@ -42,15 +77,20 @@ function birds(){
 	var randomlocationY=Math.floor(Math.random() * 200);
 	function raven(){
 		function init(t,x,y){
-			$('.raven').remove();
-			$('<div class="raven">··</div>').appendTo('#birds');
-			$('#birds').css({"left":x,"top":y});
-			$('#birds').animate({left:"+=1200",top:y},t, flyaway());
+			setInterval(function(){
+			$('.raven').show();
+			$('.seagull').show();
+			$('.raven').css({"left":1800,"top":y});
+			$('.seagull').css({"left":-80,"top":x});
+			$('.raven').animate({left:"-80",top:y},t, flyaway());
+			$('.seagull').animate({left:"+=1000",top:x},t, flyaway());
+			},4000);
 		}
 		function stealfish(){};
 		function flyaway(){
 			function gone(){
 				$('.raven').fadeOut();
+				$('.seagull').fadeOut();
 				};
 	  			setTimeout(gone,randomtime);
 			};

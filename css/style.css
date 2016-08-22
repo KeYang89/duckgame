@@ -48,13 +48,428 @@ button {
     border-radius: 12px;
     z-index: -1;
 }
-#shrimpwrap{
+/*owl*/
+#owlinfo {
+    position: absolute;
+    top: 45px;
+    font-family: Arial;
+    width: 140px;
+    left: -55px;
+    padding: 5px;
+    border: 5px solid #5a8f00;
+    background: white;
+}
+.owlwrap{
+  position: absolute;
+  right: 360px; 
+  top: 115px;
+}
+#wind{
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    top: 0;
+    margin-top: 0;
+    left: 50%;
+    margin-left: -150px;
+    animation: fly-up-down 8s infinite linear;
+}
+#owl{
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    top: 0;
+    margin-top: 0;
+    left: 50%;
+    margin-left: -150px;
+    animation: fly-rotate 8s infinite linear;
+    cursor: pointer;
+}
+
+#owlbody{
+  position: relative;
+  width: 60px;
+  height: 50px;
+  border-bottom: solid 10px #d8c6b4;
+  border-right: solid 5px #8B5A2B;
+  border-left: solid 5px #8B5A2B;
+  top: 50%;
+  margin-top: -30px;
+  left: 50%;
+  margin-left: -35px;
+background: #f0b7a1; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  #f0b7a1 0%, #8c3310 50%, #bf6e4e 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover,  #f0b7a1 0%,#8c3310 50%,#bf6e4e 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center,  #f0b7a1 0%,#8c3310 50%,#bf6e4e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  border-radius: 28px;
+}
+#owlbody-still {
+    position: relative;
+    width: 60px;
+    height: 50px;
+    border-bottom: solid 10px #d8c6b4;
+    border-right: solid 5px #8B5A2B;
+    border-left: solid 5px #8B5A2B;
+    top: 50%;
+    margin-top: -30px;
+    left: 50%;
+    margin-left: -35px;
+    box-shadow: 4px 0px 0px rgb(82, 43, 15),-4px 0px 0px rgb(82, 43, 15);
+    background: #f0b7a1;
+    background: -moz-radial-gradient(center, ellipse cover, #f0b7a1 0%, #8c3310 50%, #bf6e4e 100%);
+    background: -webkit-radial-gradient(center, ellipse cover, #f0b7a1 0%,#8c3310 50%,#bf6e4e 100%);
+    background: radial-gradient(ellipse at center, #f0b7a1 0%,#8c3310 50%,#bf6e4e 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=1 );
+    border-radius: 28px;
+  }
+#owlhead{
+  position: relative;
+  width: 40px;
+  height: 30px;
+  border-top: solid 4px #000;
+  border-bottom: solid 8px #df9e6f;
+  border-left: solid 4px #df9e6f;
+  border-right: solid 4px #df9e6f;
+  top: 50%;
+  margin-top: -60px;
+  left: 50%;
+  margin-left: -24px;
+background: #efefef; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  #efefef 0%, #af9683 76%, #af9683 76%, #ffffff 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover,  #efefef 0%,#af9683 76%,#af9683 76%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center,  #efefef 0%,#af9683 76%,#af9683 76%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  border-radius: 100%;
+  animation: updown 7s infinite linear
+}
+
+#owl-left-wing{
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+  right: 50%;
+  margin-right: 20px;
+  border-radius: 10px;
+  border-top: solid 10px #8B5A2B;
+  border-bottom: solid 15px transparent;
+  border-right: solid 150px #bda4a4;
+  border-left: solid 15px;
+  animation: l-wing 1.5s infinite linear;
+}
+
+#owl-right-wing{
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+  left: 50%;
+  margin-left: 20px;
+  border-radius: 10px;
+  border-top: solid 10px #8B5A2B;
+  border-bottom: solid 15px transparent;
+  border-left: solid 150px #bda4a4;
+  border-right: solid 15px; 
+  animation: r-wing 1.5s infinite linear;
+}
+
+#owltail{
+  position: absolute;
+  width: 24px;
+  height: 0px;
+  background: #8B5A2B;
+  border-bottom: solid 10px #000;
+  border-left: solid 20px transparent;
+  border-right: solid 20px transparent;
+  border-radius: 100px;
+  top: 50%;
+  margin-top: 20px;
+  left: 50%;
+  margin-left: -33px;
+  animation: updown 2s infinite linear;
+}
+#owltail-still{
+  position: absolute;
+  width: 24px;
+  height: 0px;
+  border-bottom: solid 10px #000;
+  border-left: solid 20px transparent;
+  border-right: solid 20px transparent;
+  border-radius: 100px;
+  top: 50%;
+  margin-top: 20px;
+  left: 50%;
+  margin-left: -33px;
+}
+#owlbeak{
+    position: absolute;
+    border-top: solid 12px #CD661D;
+    border-left: solid 12px transparent;
+    border-right: solid 12px transparent;
+    border-radius: 58%;
+    top: 50%;
+    margin-top: 4px;
+    left: 50%;
+    margin-left: -12px;
+}
+
+.beak-holes{
+    position: absolute;
+    color: #9a330a;
+    width: 3px;
+    height: 2px;
+    background: #8b5a2b;
+    top: 50%;
+    margin-top: -12px;
+}
+
+#bh1{
+  left: 50%;
+  margin-left:-4px;
+}
+
+#bh2{
+  right: 50%;
+  margin-right:-4px;
+}
+
+#owl-left-foot{
+  position: absolute;
+  top: 50%;
+  margin-top: 23px;
+  right: 50%;
+  margin-right: 5px;
+  border-radius: 25px;
+  border-bottom: solid 10px #CD661D;
+  border-left: solid 10px transparent;
+  border-right: solid 10px transparent;
+}
+
+#owl-right-foot{
+  position: absolute;
+  top: 50%;
+  margin-top: 23px;
+  left: 50%;
+  margin-left: 5px;
+  border-radius: 25px;
+  border-bottom: solid 10px #CD661D;
+  border-left: solid 10px transparent;
+  border-right: solid 10px transparent;
+}
+
+#owl-left-eye{
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    right: 50%;
+    margin-right: 3px;
+    border-radius: 100%;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    box-shadow: -10px 2px 2px #fbb4e2,-2px 0px 0px #a7ada7;
+    border-top: solid 4px #888;
+    border-bottom: solid 3.5px #444;
+    border-left: solid 4px #888;
+    border-right: solid 3.5px #555;
+}
+
+#owl-right-eye{
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    left: 50%;
+    margin-left: 3px;
+    border-radius: 100%;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    box-shadow: 10px 2px 2px #fbb4e2,2px 0px 0px #a7ada7;
+    border-top: solid 4px #888;
+    border-bottom: solid 3.5px #444;
+    border-left: solid 3.5px #888;
+    border-right: solid 4px #555;
+}
+
+@keyframes fly-rotate{
+  0%{
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    }
+  25%{
+    -webkit-transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    }
+  50%{
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    }
+  75%{
+    -webkit-transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    }
+  100%{
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    }
+}
+
+@keyframes fly-up-down{
+  
+  25%{
+    -webkit-transform: translatey(-20px);
+    -moz-transform: translatey(-20px)
+    }
+  50%{
+    -webkit-transform: translatey(20px);
+    -mozansform: translatey(20px);
+    }
+  75%{
+    -webkit-transform: translatey(-20px);
+    -mozansform: translatey(-20px);
+    }
+}
+
+
+@keyframes r-wing{
+ 
+  0%{
+  margin-top: -5px;
+  transform: rotate(0deg);
+  border-top: solid 10px #8B5A2B;
+  border-bottom: solid 15px transparent;
+    }
+  
+  25%{
+  margin-top: -25px;
+  transform: rotate(-10deg);
+  border-top: solid 20px #8B5A2B;
+  border-bottom: solid 10px transparent;
+    }
+  50%{
+  margin-top: -5px;
+  transform: rotate(10deg);
+  border-top: solid 10px #8B5A2B;
+  border-bottom: solid 15px transparent;
+    }
+  75%{
+  margin-top: -25px;
+  transform: rotate(-10deg);
+  border-top: solid 20px #8B5A2B;
+  border-bottom: solid 10px transparent;
+    }
+  
+  100%{
+  margin-top: -5px;
+  transform: rotate(0deg);
+  border-top: solid 10px #8B5A2B;
+  border-bottom: solid 15px transparent;
+    }
+}
+
+@keyframes l-wing{
+
+  0%{
+  margin-top: -5px;
+  transform: rotate(0deg);
+  border-top: solid 10px #8B5A2B;
+  border-bottom: solid 15px transparent;
+    }
+  
+  25%{
+  margin-top: -25px;
+  transform: rotate(10deg);
+  border-top: solid 20px #8B5A2B;
+  border-bottom: solid 10px transparent;
+    }
+  50%{
+  margin-top: -5px;
+  transform: rotate(-10deg);
+  border-top: solid 10px #8B5A2B;
+  border-bottom: solid 15px transparent;
+    }
+  75%{
+  margin-top: -25px;
+  transform: rotate(10deg);
+  border-top: solid 20px #8B5A2B;
+  border-bottom: solid 10px transparent;
+    }
+  
+  100%{
+  margin-top: -5px;
+  transform: rotate(0deg);
+  border-top: solid 10px #8B5A2B;
+  border-bottom: solid 15px transparent;
+    }
+}
+
+@keyframes updown{
+   0%{
+  transition-duration: 5s;
+  transform: translatey(-2px);
+    }
+  25%{
+  transition-duration: 5s;
+  transform: translatey(4px);
+    }
+  50%{
+  transition-duration: 5s;  
+  transform: translatey(0px);
+    }
+  75%{
+  transition-duration: 5s;
+  transform: translatey(4px);
+    }
+  100%{
+  transition-duration: 5s;
+  transform: translatey(-2px);
+    }
+} 
+/*end owl*/
+/*shrimp*/
+.rotatebag{
+  -webkit-transition: all ease-in 400ms;
+    -moz-transition: all ease-in 400ms;
+    -o-transition: all ease-in 400ms;
+    transition: all ease-in 400ms;
+  transform: rotate(-110deg);
+  -ms-transform: rotate(-110deg); /* IE 9 */
+  -moz-transform: rotate(-110deg); /* Firefox */
+  -webkit-transform: rotate(-110deg); /* Safari and Chrome */
+  -o-transform: rotate(-110deg); /* Opera */
+}
+.rotatedrop {
+  -webkit-transition: rotate ease-in 450ms,margin-left ease-out 300ms,margin-top ease-in 1200ms;
+    -moz-transition: rotate ease-in 450ms,margin-left ease-out 300ms,margin-top ease-in 1200ms;
+    -o-transition: rotate ease-in 450ms,margin-left ease-out 300ms,margin-top ease-in 1200ms;
+    transition: rotate ease-in 450ms,margin-left ease-out 300ms,margin-top ease-in 1200ms;
+  transform: rotate(-120deg);
+  -ms-transform: rotate(-120deg); /* IE 9 */
+  -moz-transform: rotate(-120deg); /* Firefox */
+  -webkit-transform: rotate(-120deg); /* Safari and Chrome */
+  -o-transform: rotate(-120deg); /* Opera */
+  margin-top:800px;
+  margin-left:-120px;
+  margin-bottom: 10px;
+}
+#shrimpinfo {
+    position: absolute;
+    top: 160px;
+    font-family: Arial;
+    width: 140px;
+    left: -200px;
+    padding:5px;
+    border: 5px solid #5a8f00;
+    background: white;
+}
+.shrimpwrap{
     position: absolute;
     right: 200px;
     background: rgba(244,244,244,0.2);
     width: 60px;
     height: 80px;
-    top: 60px;
+    top: 68px;
     padding-top: 10px;
     text-align: center;
     box-shadow: 2px 0px 0px rgba(114,214,214,0.2),2px -2px 0px rgba(120,204,204,0.1);
@@ -68,7 +483,7 @@ button {
   background-image: -webkit-radial-gradient(center right circle, rgba(0, 0, 0, 0) 67%, #cc4a04 68%, #ef6921 74%, #ef6921 85%, rgba(33, 33, 33, 0.2) 86%, rgba(0, 0, 0, 0) 90%);
   background-image: radial-gradient(circle at center right, rgba(0, 0, 0, 0) 67%, #cc4a04 68%, #ef6921 74%, #ef6921 85%, rgba(33, 33, 33, 0.2) 86%, rgba(0, 0, 0, 0) 90%);
   position: absolute;
-  top: 68px;
+  top: 74px;
   left: -150px;
   display: block;
   width: 86px;
@@ -105,6 +520,61 @@ button {
   width: 22px;
   height: 22px;
 }
+.mustache1{
+    width: 100px;
+    height: 80px;
+    margin-top: -63px;
+    margin-left: 24px;
+    border: solid 1px #ef6921;
+    border-color: transparent transparent transparent #ef6921;
+    border-radius: 30px 0 0 80%/100px;
+    transform: rotate(32deg);
+}
+.mustache2{
+    width: 100px;
+    height: 80px;
+    margin-top: -70px;
+    margin-left: 25px;
+    border: solid 1px #ef6921;
+    border-color: transparent transparent transparent #ef6921;
+    border-radius: 30px 0 0 80%/100px;
+    transform: rotate(48deg);
+}
+.leg1{
+width: 8px;
+    height: 10px;
+    margin-top: -15px;
+    margin-left: 24px;
+    border: solid 1px #ef6921;
+    border-color: #ef6921 transparent;
+    border-radius: 160px 0 0 0;
+    transform: rotate(16deg);
+    position: absolute;
+}
+.leg3{
+width: 8px;
+    height: 10px;
+    margin-top: 5px;
+    margin-left: 24px;
+    border: solid 1px #ef6921;
+    border-color: #ef6921 transparent;
+    border-radius: 160px 0 0 0;
+    transform: rotate(16deg);
+    position: absolute;
+}
+.leg2{
+width: 8px;
+    height: 10px;
+    margin-top: -5px;
+    margin-left: 24px;
+    border: solid 1px #ef6921;
+    border-color: #ef6921 transparent;
+    border-radius: 160px 0 0 0;
+    transform: rotate(16deg);
+    position: absolute;
+}
+/*end shrimp*/
+/*coins*/
 .coin p{
   font-family: georgia;
   font-style: italic;
@@ -250,6 +720,7 @@ background: linear-gradient(45deg,  rgba(242,215,12,1) 0%,rgba(255,255,255,1) 56
   border-right: 1px solid rgba(242,215,12,0.3);
   box-shadow: inset 0px 0px 2px 2px rgba(150, 150, 150, .05);
   }
+/*end coins*/
 .goodieswrap{
     position: absolute;
     width: 100px;
@@ -263,8 +734,8 @@ background: linear-gradient(45deg,  rgba(242,215,12,1) 0%,rgba(255,255,255,1) 56
     position: absolute;
     top: 160px;
     font-family: Arial;
-    width: 200px;
-    left: -40px;
+    width: 120px;
+    left: -20px;
     padding:5px;
     border: 5px solid #5a8f00;
     background: white;
@@ -1225,7 +1696,7 @@ div #fish6{
   position:absolute;
   margin-top:20px;
 }
-.raven{
+#birds > div {
   background:black;
   border-radius: 50% 50% 20% 20%;
   color:white;
@@ -1240,20 +1711,25 @@ div #fish6{
   animation:planeo 8s linear infinite;
   z-index:999;
 }
+.seagull {
+  background: white !important;
+  color:black !important;
 
-.raven:after,
-.raven:before{
+}
+#birds > div:after,
+#birds > div:before{
   content:"";
   position:absolute;
   top:50%; left:50%;
 }
-
 /*------------------------------------------------------ bird wings
 */
-
-.raven:after{
+.seagull:after{
+  box-shadow: inset 0px 5px 0 white !important;
+}
+#birds > div:after{
   border-radius: 100% 100% 0 0;
-  box-shadow: inset 0px 5px 0 black;
+  box-shadow: inset 0px 6px 0 black;
   width:100px; height:100px;
   margin-top:0px; margin-left:-50px;
   transform-origin: 100% 0%;
@@ -1263,7 +1739,7 @@ div #fish6{
 /*------------------------------------------------------ bird beak
 */
 
-.raven:before{
+#birds > div:before{
   background:#FFC37F;
   border-radius: 100% 0% 20% 0%;
   margin-top:3px; margin-left:-4px;
