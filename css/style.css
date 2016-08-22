@@ -1411,15 +1411,15 @@ div.fish{
 {
  0% {margin-left:100%}
   90% {margin-left:-35px;}
-  100% {margin-left:-105px;}
+  100% {margin-left:-55px;}
 }
 .fish {
-  margin-left: -105px;
+  margin-left: -55px;
   position: absolute; 
   
 }
 .fish img{
-  width: 105px;
+  width: 55px;
 }
 .fishgroup1{
   animation: swim1 10s;

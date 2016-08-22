@@ -36,6 +36,14 @@ setTimeout(function(){
 		$('<div class="speakbubble small hint">Shrimp costs $5<br>Try something else!</div>').insertBefore('#moneybag');
 	}
 }
+function fishgrow(){
+	var randomsize1=Math.floor(Math.random()*20);
+	var randomsize2=Math.floor((1-Math.random())*20);
+	var fishsize1=$('.regularfish1').width()+randomsize1;
+	var fishsize2=$('.regularfish2').width()+randomsize2;
+	$('.regularfish1').width(fishsize1);
+	$('.regularfish2').width(fishsize2);
+}
 function shrimp(){
 cleanbubble();
 $('#shrimpinfo').remove();
@@ -45,6 +53,7 @@ $('.shrimpwrap').addClass('rotatebag');
 $('.shrimp').addClass('rotatedrop');
 $('#moneybag').html(money);
 setTimeout(function(){
+					fishgrow();
 					$('.shrimpwrap').removeClass('rotatebag');
 					$('.shrimp').removeClass('rotatedrop');}, 1600);
 	}
@@ -65,7 +74,14 @@ function elixir(){
  	setTimeout(function(){
 					 	$('#elixir').removeClass('rotated');
  						$('.bottle_top').removeClass('rotatespin');
- 						$('.bottle_inner>.water').removeClass('pour');}, 3000);
+ 						$('.bottle_inner>.water').removeClass('pour');
+ 						$('<div class="veryrarefish"></div>').appendTo('.fishgroup1');
+ 						$('<div class="rarefish"></div>').appendTo('.fishgroup2');
+ 					}, 3000);
+ setTimeout(function(){
+ 	$('rarefish').remove();
+	$('veryrarefish').remove();
+},8000);
 	}
 	else {
 		$('<div class="speakbubble small hint">Elixir costs $20<br>Try something else!</div>').insertBefore('#moneybag');
