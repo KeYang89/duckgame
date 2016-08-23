@@ -2,12 +2,31 @@ var hatchtime=2100;
 var bubbletime=2700;
 var money = 25;
 var count=0;
-var row=0;
+var rownum=0;
+var dirnum=0;
+var dir=[90,-270,270,450,-450];
 $('#moneybag').html(money);//init
-$('<div class="speakbubble small">Hey, I\'m your moneybag!</div>').insertBefore('#moneybag');
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
 //set seagrass
 grass(200,0);
+
+function eggholder(dirnum){
+	var holderstring='<div class="holder newholder"><div class="floatingmaterial"></div><div class="floatingmaterial fmbottomleft"></div><div class="floatingmaterial fmbottomright"></div></div>';
+	var marginstring='calc(50%';
+	$(holderstring).insertAfter('.current');
+	var num=dir[dirnum];
+	if (num>0){
+	marginstring=marginstring+' + '+ num+'px)';
+	console.log(marginstring);
+	}
+	else{
+	num=Math.abs(num);
+	marginstring=marginstring+' - '+ num+'px)';
+	console.log(marginstring);
+	}
+	$('.newholder').css('margin-left',marginstring);
+	$('.holder').removeClass('newholder');
+}
 function grass(num,nutrient) {
 var numberOfBlades = num;
 var grass = document.getElementsByClassName('grass')[0];
@@ -28,6 +47,14 @@ for (var i = 0; i < numberOfBlades; i++) {
 }
 }
 //end of seagrass setting
+function moneybaginfo(){
+	$('#moneybaginfo').show();
+	$('#moneybaginfo').fadeOut(3000);	
+}
+function floatinginfo(){
+	$('#floatinginfo').show();
+	$('#floatinginfo').fadeOut(3000);	
+}
 function elixirinfo(){
 	$('#elixirinfo').show();
 	$('#elixirinfo').fadeOut(3000);	
@@ -55,7 +82,7 @@ setTimeout(function(){
 					$('.owlwrap').show();}, 8000);
 	}
 	else {
-		$('<div class="speakbubble small hint">Shrimp costs $5<br>Try something else!</div>').insertBefore('#moneybag');
+		$('<div class="speakbubble small hint">Owl costs $2<br>Try something else!</div>').insertBefore('#moneybag');
 	}
 }
 function fishgrow(){
@@ -173,12 +200,29 @@ function hatchEgg(e) {
     	duckling(e);
    }
 function digesting(e){
-		if($(e).width()<120){
+		if($(e).width()<112){
 			grow(e);
 		}
+		else {
 			layEgg(e);
-			
+		}			
 }
+function duck(e){
+		setTimeout(function(){
+			var imgUrlduck= 'img/duck.gif';
+			$(e).attr('src',imgUrlduck);
+		},220);	
+		setTimeout(function(){
+			$('.holder-init').css("margin-top","-160px");
+			$('.holder-init >.fmleft').css("margin-top","60px");
+			$('.holder-init >.fmright').css("margin-top","60px");
+			$('.holder-init >.fmleft').css("transform","rotate(30deg)");
+			$('.holder-init >.fmright').css("transform","rotate(-30deg)");
+		},420);	
+		birds();
+		poop(e);
+		die();
+	}
 function duckling(e){
 		setTimeout(function(){
 			var imgUrlduckling= 'img/ducklingInSea.gif';
@@ -193,8 +237,7 @@ function grow(e){
 	$(e).addClass("fleging");
 	setTimeout(function() {
 					$(e).animate({"height":"+=25px","top":"-=12px"},500)
-					},1000);	
-	layEgg(e);
+					},1000);
 }
 function tip(text,e){
   	setTimeout(function(){
@@ -266,11 +309,12 @@ function poop(e,size) {
   					$('#bigpoop').remove();}, 3000);
 	}
 	else {
-			setInterval(function(){ 
+			setInterval(function(){
+				$('.poop').remove();
 				$('<div class="poop">.</div>').insertBefore(e); 
 				setTimeout(function(){
 					$('.poop').fadeOut('slow');
-  					$('.poop').remove();}, 5000);
+  					}, 4000);
 		}, 4000);
 	}
 }
@@ -279,12 +323,37 @@ function age() {
 //to be continued
 }
 function layEgg(e) {
-	if($(e).width()>120){
+
+	
  	$(e).removeClass("fleging");
  	$(e).addClass("mature");
- 	$('<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>').appendTo('.ducks-offspring'); 
+ 	duck(e);
+ 	
+ 	setTimeout(function(){$('<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>').appendTo('.newrow')},400); 
+	
+	
+	if (dirnum < 6){
+	eggholder(dirnum);
+	dirnum=dirnum+1;
 	}
-	shake(200,'.newegg',2,30);
+	else {
+		if (rownum < 4){
+		rownum=rownum+1;
+		$('.ducks-offspring').removeClass('newrow');
+		rowClass='row'+rownum;
+		rowMarginTop=70-rownum*20+'vh';
+		$('.ducks-offspring').addClass(rowClass);
+		$('<div class="newrow"></div>').insertAfter('.ducks-offspring');
+		$('.newrow').css("position","absolute");
+		$('.newrow').css("margin-top",rowMarginTop);
+		}
+		else {
+			$('<div id="gameovermessage"><img src="img/ducklingInSea.gif"  width="100" align="left"><p>The game is over, and I hope you enjoy it.<img src="img/fish_left.gif"  width="80" align="right"><img src="img/fish_right.gif"  width="80" align="right"></p><iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.narrativecard.com%2Fduckgame&layout=button_count&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>').appendTo("#sea");
+		}
+	}
+shake(200,'.newegg',2,30);
+	
+	
 }
 function passFish(e) {
 	$('.choice').remove();
@@ -295,6 +364,7 @@ function passFish(e) {
 }
 function eatFish(e) {
 	cleanbubble();
+	if($(e).hasClass("hasfish")){
 	$('<div class="speakbubble">Yummmm</div>').insertBefore(e);
 	$('.speakbubble').fadeOut('slow');
 	digesting(e);
@@ -302,6 +372,7 @@ function eatFish(e) {
     	$(e).attr('src',imgUrleat);
     	$(e).addClass("nofish");
     	$(e).removeClass("hasfish");
+    }
 }
 function die() {
 	//to be continued
@@ -361,7 +432,7 @@ function checkCollisions(target1,target2){
 
   if (match&&$(target1).hasClass("nofish")) {
 	var imgUrlcatch = 'img/duckEatFish.gif';
-    	setTimeout(function(){$(target1).attr('src',imgUrlcatch);},400);
+    	setTimeout(function(){$(target1).attr('src',imgUrlcatch);},200);
     	$(target1).addClass("hasfish");
     	$(target1).removeClass("nofish");
 

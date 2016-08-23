@@ -13,13 +13,120 @@ button {
   border:none;
   cursor: pointer;
 }
+.holder {
+    position: relative;
+    width: 100%;
+    margin-left: -webkit-calc(50% - 90px);
+    margin-left: calc(50% - 90px);
+    margin-top: -30px;
+    z-index: -1;
+  }
+.goodieswrap {
+  opacity: 0.6;
+  width: 100%;
+  height: 160px;
+  -filter:grayscale(80%);
+  -webkit-filter:grayscale(80%);
+  position: absolute;
+  top: -60px;
+  right: 0px;
+  z-index: 999;
+  cursor: pointer;
+}
+.goodieswrap:hover {
+  opacity: 1;
+  top:10px;
+  -filter:grayscale(0%);
+  -webkit-filter:grayscale(0%);
+  -webkit-transition: top 1s; /* Safari */
+  transition: top 1s;
+}
 /*Toolset top*/
+.floatingwrap {
+    position: absolute;
+    width: 160px;
+    top: 100px;
+    right: 670px;
+    cursor: pointer;
+}
+#floatinginfo {
+    position: absolute;
+    top: 60px;
+    font-family: Arial;
+    width: 180px;
+    right: -40px;
+    padding:5px;
+    border: 5px solid #5a8f00;
+    background: white;
+}
+.floatingmaterial {
+    position: absolute;
+    font-family: Arial;
+    width: 190px;
+    border-radius: 40px;
+    height: 40px;
+    padding:5px;
+    background-size: 120px;
+    background-repeat: repeat;
+    background: -moz-linear-gradient(left, #e9dfc4 0%, #e9dfc4 1%, #ede3c8 2%, #ede3c8 24%, #ebddc3 25%, #e9dfc4 48%, #ebddc3 49%, #e6d8bd 52%, #e6d8bd 53%, #e9dbc0 54%, #e6d8bd 55%, #e6d8bd 56%, #e9dbc0 57%, #e6d8bd 58%, #e6d8bd 73%, #e9dbc0 74%, #e9dbc0 98%, #ebddc3 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, #e9dfc4), color-stop(1%, #e9dfc4), color-stop(2%, #ede3c8), color-stop(24%, #ede3c8), color-stop(25%, #ebddc3), color-stop(48%, #e9dfc4), color-stop(49%, #ebddc3), color-stop(52%, #e6d8bd), color-stop(53%, #e6d8bd), color-stop(54%, #e9dbc0), color-stop(55%, #e6d8bd), color-stop(56%, #e6d8bd), color-stop(57%, #e9dbc0), color-stop(58%, #e6d8bd), color-stop(73%, #e6d8bd), color-stop(74%, #e9dbc0), color-stop(98%, #e9dbc0), color-stop(100%, #ebddc3));
+    background: -webkit-linear-gradient(left, #e9dfc4 0%, #e9dfc4 1%, #ede3c8 2%, #ede3c8 24%, #ebddc3 25%, #e9dfc4 48%, #ebddc3 49%, #e6d8bd 52%, #e6d8bd 53%, #e9dbc0 54%, #e6d8bd 55%, #e6d8bd 56%, #e9dbc0 57%, #e6d8bd 58%, #e6d8bd 73%, #e9dbc0 74%, #e9dbc0 98%, #ebddc3 100%);
+    background: -o-linear-gradient(left, #e9dfc4 0%, #e9dfc4 1%, #ede3c8 2%, #ede3c8 24%, #ebddc3 25%, #e9dfc4 48%, #ebddc3 49%, #e6d8bd 52%, #e6d8bd 53%, #e9dbc0 54%, #e6d8bd 55%, #e6d8bd 56%, #e9dbc0 57%, #e6d8bd 58%, #e6d8bd 73%, #e9dbc0 74%, #e9dbc0 98%, #ebddc3 100%);
+    background: -ms-linear-gradient(left, #e9dfc4 0%, #e9dfc4 1%, #ede3c8 2%, #ede3c8 24%, #ebddc3 25%, #e9dfc4 48%, #ebddc3 49%, #e6d8bd 52%, #e6d8bd 53%, #e9dbc0 54%, #e6d8bd 55%, #e6d8bd 56%, #e9dbc0 57%, #e6d8bd 58%, #e6d8bd 73%, #e9dbc0 74%, #e9dbc0 98%, #ebddc3 100%);
+    background: linear-gradient(to right, #e9dfc4 0%, #e9dfc4 1%, #ede3c8 2%, #ede3c8 24%, #ebddc3 25%, #e9dfc4 48%, #ebddc3 49%, #e6d8bd 52%, #e6d8bd 53%, #e9dbc0 54%, #e6d8bd 55%, #e6d8bd 56%, #e9dbc0 57%, #e6d8bd 58%, #e6d8bd 73%, #e9dbc0 74%, #e9dbc0 98%, #ebddc3 100%);
+}
+.fmleft{position: absolute;width: 10px;top:-30px;left:0;height: 80px;}
+.fmright{position: absolute;width: 10px;top: -30px;left: 180px;height: 80px;}
+.fmbottomleft{
+    position: absolute;
+    box-shadow: inset 0px -1px 0px 1px #e4c851; 
+    width: 56px;
+    top:5px;
+    left:30px;
+    height:20px; 
+    -webkit-box-shadow: inset 0px -4px 2px 4px rgba(97,97,97,0.44);
+    -moz-box-shadow: inset 0px -4px 2px 4px rgba(97,97,97,0.44);
+    box-shadow: inset 0px -4px 2px 4px rgba(97,97,97,0.44);
+    background: -moz-linear-gradient(left, #f29548 0%, #f29548 1%, #dfb580 2%, #dfb580 24%, #b4956e 25%, #f29548 48%, #b4956e 49%, #c19f5f 52%, #c19f5f 53%, #e3ce77 54%, #c19f5f 55%, #c19f5f 56%, #e3ce77 57%, #c19f5f 58%, #c19f5f 73%, #e3ce77 74%, #e3ce77 98%, #b4956e 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, #f29548), color-stop(1%, #f29548), color-stop(2%, #dfb580), color-stop(24%, #dfb580), color-stop(25%, #b4956e), color-stop(48%, #f29548), color-stop(49%, #b4956e), color-stop(52%, #c19f5f), color-stop(53%, #c19f5f), color-stop(54%, #e3ce77), color-stop(55%, #c19f5f), color-stop(56%, #c19f5f), color-stop(57%, #e3ce77), color-stop(58%, #c19f5f), color-stop(73%, #c19f5f), color-stop(74%, #e3ce77), color-stop(98%, #e3ce77), color-stop(100%, #b4956e));
+    background: -webkit-linear-gradient(left, #f29548 0%, #f29548 1%, #dfb580 2%, #dfb580 24%, #b4956e 25%, #f29548 48%, #b4956e 49%, #c19f5f 52%, #c19f5f 53%, #e3ce77 54%, #c19f5f 55%, #c19f5f 56%, #e3ce77 57%, #c19f5f 58%, #c19f5f 73%, #e3ce77 74%, #e3ce77 98%, #b4956e 100%);
+    background: -o-linear-gradient(left, #f29548 0%, #f29548 1%, #dfb580 2%, #dfb580 24%, #b4956e 25%, #f29548 48%, #b4956e 49%, #c19f5f 52%, #c19f5f 53%, #e3ce77 54%, #c19f5f 55%, #c19f5f 56%, #e3ce77 57%, #c19f5f 58%, #c19f5f 73%, #e3ce77 74%, #e3ce77 98%, #b4956e 100%);
+    background: -ms-linear-gradient(left, #f29548 0%, #f29548 1%, #dfb580 2%, #dfb580 24%, #b4956e 25%, #f29548 48%, #b4956e 49%, #c19f5f 52%, #c19f5f 53%, #e3ce77 54%, #c19f5f 55%, #c19f5f 56%, #e3ce77 57%, #c19f5f 58%, #c19f5f 73%, #e3ce77 74%, #e3ce77 98%, #b4956e 100%);
+    background: linear-gradient(to right, #f29548 0%, #f29548 1%, #dfb580 2%, #dfb580 24%, #b4956e 25%, #f29548 48%, #b4956e 49%, #c19f5f 52%, #c19f5f 53%, #e3ce77 54%, #c19f5f 55%, #c19f5f 56%, #e3ce77 57%, #c19f5f 58%, #c19f5f 73%, #e3ce77 74%, #e3ce77 98%, #b4956e 100%);
+}
+.fmbottomright{
+    position: absolute;
+    box-shadow: inset 0px -1px 0px 1px #e4c851; 
+    width: 56px;
+    top:5px;
+    left:105px;
+    height:20px; 
+    -webkit-box-shadow: inset 0px -4px 2px 4px rgba(97,97,97,0.44);
+    -moz-box-shadow: inset 0px -4px 2px 4px rgba(97,97,97,0.44);
+    box-shadow: inset 0px -4px 2px 4px rgba(97,97,97,0.44);
+    background: -moz-linear-gradient(left, #d78548 0%, #d78548 1%, #e5be89 2%, #e5be89 24%, #dfac91 25%, #d78548 48%, #dfac91 49%, #c28f5f 52%, #c28f5f 53%, #e3ce77 54%, #c28f5f 55%, #c28f5f 56%, #e3ce77 57%, #c28f5f 58%, #c28f5f 73%, #e3ce77 74%, #e3ce77 98%, #dfac91 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, #d78548), color-stop(1%, #d78548), color-stop(2%, #e5be89), color-stop(24%, #e5be89), color-stop(25%, #dfac91), color-stop(48%, #d78548), color-stop(49%, #dfac91), color-stop(52%, #c28f5f), color-stop(53%, #c28f5f), color-stop(54%, #e3ce77), color-stop(55%, #c28f5f), color-stop(56%, #c28f5f), color-stop(57%, #e3ce77), color-stop(58%, #c28f5f), color-stop(73%, #c28f5f), color-stop(74%, #e3ce77), color-stop(98%, #e3ce77), color-stop(100%, #dfac91));
+    background: -webkit-linear-gradient(left, #d78548 0%, #d78548 1%, #e5be89 2%, #e5be89 24%, #dfac91 25%, #d78548 48%, #dfac91 49%, #c28f5f 52%, #c28f5f 53%, #e3ce77 54%, #c28f5f 55%, #c28f5f 56%, #e3ce77 57%, #c28f5f 58%, #c28f5f 73%, #e3ce77 74%, #e3ce77 98%, #dfac91 100%);
+    background: -o-linear-gradient(left, #d78548 0%, #d78548 1%, #e5be89 2%, #e5be89 24%, #dfac91 25%, #d78548 48%, #dfac91 49%, #c28f5f 52%, #c28f5f 53%, #e3ce77 54%, #c28f5f 55%, #c28f5f 56%, #e3ce77 57%, #c28f5f 58%, #c28f5f 73%, #e3ce77 74%, #e3ce77 98%, #dfac91 100%);
+    background: -ms-linear-gradient(left, #d78548 0%, #d78548 1%, #e5be89 2%, #e5be89 24%, #dfac91 25%, #d78548 48%, #dfac91 49%, #c28f5f 52%, #c28f5f 53%, #e3ce77 54%, #c28f5f 55%, #c28f5f 56%, #e3ce77 57%, #c28f5f 58%, #c28f5f 73%, #e3ce77 74%, #e3ce77 98%, #dfac91 100%);
+    background: linear-gradient(to right, #d78548 0%, #d78548 1%, #e5be89 2%, #e5be89 24%, #dfac91 25%, #d78548 48%, #dfac91 49%, #c28f5f 52%, #c28f5f 53%, #e3ce77 54%, #c28f5f 55%, #c28f5f 56%, #e3ce77 57%, #c28f5f 58%, #c28f5f 73%, #e3ce77 74%, #e3ce77 98%, #dfac91 100%);
+}
 .moneybagwrap {
     position: absolute;
     width: 100px;
     top: 100px;
     right: 0;
     cursor: pointer;
+}
+#moneybaginfo {
+    position: absolute;
+    top: 60px;
+    font-family: Arial;
+    width: 120px;
+    right: 0px;
+    padding:5px;
+    border: 5px solid #5a8f00;
+    background: white;
 }
 #moneybag{
     display: block;
@@ -31,7 +138,7 @@ button {
     padding-top: 10px;
     text-align: center;
     line-height: 28px;
-    margin-top: 10px;
+    margin-top: 0px;
     box-shadow: 2px 0px 0px #5b4425,2px -2px 0px #704e2e;
     position: fixed;
     z-index: 999;
@@ -61,14 +168,14 @@ button {
 }
 .owlwrap{
   position: absolute;
-  right: 360px; 
+  right: 500px;
   top: 115px;
 }
 #wind{
     position: absolute;
     width: 300px;
     height: 100px;
-    top: 0;
+    top: 100px;
     margin-top: 0;
     left: 50%;
     margin-left: -150px;
@@ -458,14 +565,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', end
     top: 160px;
     font-family: Arial;
     width: 140px;
-    left: -200px;
+    right: 310px;
     padding:5px;
     border: 5px solid #5a8f00;
     background: white;
 }
 .shrimpwrap{
     position: absolute;
-    right: 200px;
+    right: 360px;
     background: rgba(244,244,244,0.2);
     width: 60px;
     height: 80px;
@@ -484,7 +591,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', end
   background-image: radial-gradient(circle at center right, rgba(0, 0, 0, 0) 67%, #cc4a04 68%, #ef6921 74%, #ef6921 85%, rgba(33, 33, 33, 0.2) 86%, rgba(0, 0, 0, 0) 90%);
   position: absolute;
   top: 74px;
-  left: -150px;
+  right: 320px;
   display: block;
   width: 86px;
   height: 70px;
@@ -540,6 +647,42 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', end
     border-radius: 30px 0 0 80%/100px;
     transform: rotate(48deg);
 }
+.line1{
+    width: 4px;
+    height: 8px;
+    margin-top: -10px;
+    margin-left: 14px;
+    border: solid 1px #ef6921;
+    border-color: #ef6921 transparent;
+    border-radius: 60px;
+    transform: rotate(-66deg);
+    position: absolute;
+    box-shadow: -1px 0px 1px #c69a78;
+}
+.line2{
+    width: 2px;
+    height: 8px;
+    margin-top: 0px;
+    margin-left: 14px;
+    border: solid 1px #ef6921;
+    border-color: #ef6921 transparent;
+    border-radius: 60px;
+    transform: rotate(-66deg);
+    position: absolute;
+    box-shadow: -1px 0px 1px #c69a78;
+}
+.line3{
+    width: 2px;
+    height: 6px;
+    margin-top: 10px;
+    margin-left: 18px;
+    border: solid 1px #ef6921;
+    border-color: #ef6921 transparent;
+    border-radius: 60px;
+    transform: rotate(-70deg);
+    position: absolute;
+    box-shadow: -1px 0px 1px #c69a78;
+}
 .leg1{
 width: 8px;
     height: 10px;
@@ -547,7 +690,7 @@ width: 8px;
     margin-left: 24px;
     border: solid 1px #ef6921;
     border-color: #ef6921 transparent;
-    border-radius: 160px 0 0 0;
+    border-radius: 60px;
     transform: rotate(16deg);
     position: absolute;
     box-shadow: -1px 0px 1px #6b6a6a;
@@ -699,13 +842,10 @@ width: 8px;
 .gold{
 background: linear-gradient(45deg,  rgba(242,215,12,1) 0%,rgba(255,255,255,1) 56%,rgba(252,235,0,1) 96%);
 }
-
 .gold:before{
   background: linear-gradient(45deg,  rgba(242,215,12,1) 0%,rgba(255,255,255,1) 56%,rgba(252,235,0,1) 96%);
   border: 1px solid rgba(242,215,12,1);
   }
-
-
 .gold:after{
   background: linear-gradient(45deg,  rgba(242,215,12,1) 0%,rgba(255,255,255,1) 56%,rgba(252,235,0,1) 96%);
   border-top: 1px solid rgba(255,255,255,0.3);
@@ -724,15 +864,15 @@ background: linear-gradient(45deg,  rgba(242,215,12,1) 0%,rgba(255,255,255,1) 56
   box-shadow: inset 0px 0px 2px 2px rgba(150, 150, 150, .05);
   }
 /*end coins*/
-.goodieswrap{
+/*Elixir*/
+.elixirwrap{
     position: absolute;
     width: 100px;
-    top: 10px;
+    top: 0px;
     right: 200px;
     z-index: 999;
    cursor: pointer;
 }
-/*Elixir*/
 #elixirinfo {
     position: absolute;
     top: 160px;
@@ -1228,6 +1368,13 @@ position:absolute; left:0px; top:0px; display:block; height:15px; width:20px;  b
     border-radius: 10px;
     display: inline;
     min-width: 160px;
+    z-index: 9999;
+}
+.row1{
+}
+.row2{
+}
+.row3{
 }
 .small{
     padding: 6px 8px;
@@ -1316,7 +1463,17 @@ position:absolute; left:0px; top:0px; display:block; height:15px; width:20px;  b
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);top:400px;}
 }
-
+#gameovermessage {
+  display: block;
+  position: fixed;
+  z-index: 999;
+  width: 400px;
+  height: 120px;
+  padding: 15px;
+  background: rgba(255,255,255,0.55);
+  font-family: Arial;
+  border: 5px gold solid;
+}
 #sky {
   text-align: center;
   background: #68ABFF;
@@ -1361,13 +1518,22 @@ position:absolute; left:0px; top:0px; display:block; height:15px; width:20px;  b
     width: 100%;
 }
 .eggwrap {
-  max-width: 120px;
-  display: inline;
-  margin-right:-20px;
-  margin-left:-20px;
+   cursor: pointer;
+    max-width: 120px;
+    display: inline;
+    margin-right: -20px;
+    margin-left: 0px;
+}
+.newrow {
+  position: absolute;
+  margin-bottom: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
 }
 .newegg{
   margin-bottom: 20px;
+  margin-left: 6px;
 }
 img.duckegg {
   max-width: 100px;
@@ -1380,6 +1546,14 @@ img.duckegg {
 .eggwrap:nth-of-type(even)>.hatched {
   -webkit-filter: hue-rotate(140deg); /* Chrome, Safari, Opera */
   filter: hue-rotate(120deg);
+}
+.eggwrap:nth-of-type(3n+0)>.hatched {
+  -webkit-filter: hue-rotate(60deg); /* Chrome, Safari, Opera */
+  filter: hue-rotate(60deg);
+}
+.eggwrap:nth-of-type(5n+0)>.hatched {
+  -webkit-filter: hue-rotate(-90deg); /* Chrome, Safari, Opera */
+  filter: hue-rotate(-90deg);
 }
 /*End Duck Egg Animation*/
 /* Fish Animation */

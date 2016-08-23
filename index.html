@@ -2,11 +2,12 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Duck Game</title>
+    <title>Hobo Ducklings</title>
+    <meta name="description" content="A strategic ecosystem creation game made with HTML, CSS and JavaScript. Feeding fish and ducks, and let them grow and evolve. Optmized for desktop Chrome. ">
+    <meta name="keywords" content="ducks, fish, ecosystem, strategy game">
+    <meta name="author" content="Ke Yang">
     <link rel="stylesheet" href="css/style.css">
-
   </head>
-
 <body>
 <div id="sky">
   <div id="birds">
@@ -38,40 +39,51 @@
         <div id="bh2" class="beak-holes">
           </div>
       </div>
-
     </div>
-
   </div>
-
 </div>
-  <div class="moneybagwrap">
+<div class="goodieswrap wrap">
+  <div class="moneybagwrap" onmouseover="moneybaginfo()">
+     <div id="moneybaginfo" style="display: none;">Hey, I'm your moneybag!</div>
     <div id="moneybag"></div>
   </div>
-   <div class="goodieswrap">
    <div class="owlwrap" onClick="owl()" onmouseover="owlinfo()">
    <div id="owlinfo" style="display: none;">Chase off ravens</div>
-    <div id="owltail-still">
-    </div>
-    <div id="owl-left-foot">
-    </div>
-    <div id="owl-right-foot">
-    </div>
-    <div id="owlbody-still">
-    </div>
+    <div id="owltail-still"></div>
+    <div id="owl-left-foot"></div>
+    <div id="owl-right-foot"></div>
+    <div id="owlbody-still"></div>
     <div id="owlhead">
       <div id="owl-left-eye">
       </div>
       <div id="owl-right-eye">
       </div>
       <div id="owlbeak">
-        <div id="bh1" class="beak-holes">
-          </div>
-        <div id="bh2" class="beak-holes">
-          </div>
+        <div id="bh1" class="beak-holes"></div>
+        <div id="bh2" class="beak-holes"></div>
       </div>
-
-    </div></div>
-    <div class="shrimpwrap" onClick="shrimp()" onmouseover="shrimpinfo()"></div><div class="shrimp"><div class="mustache1"></div><div class="mustache2"></div><div class="leg1"></div><div class="leg2"></div><div class="leg3"></div></div><div id="shrimpinfo" style="display: none;">Help fish grow</div>
+    </div>
+  </div>
+  <div class="floatingwrap" onmouseover="floatinginfo()">
+    <div id="floatinginfo" style="display: none;">Hold eggs and ducks</div>
+    <div class="floatingmaterial"></div>
+    <div class="floatingmaterial fmleft"></div>
+    <div class="floatingmaterial fmright"></div>
+    <div class="floatingmaterial fmbottomleft"></div>
+    <div class="floatingmaterial fmbottomright"></div>
+  </div>
+    <div class="shrimpwrap" onClick="shrimp()" onmouseover="shrimpinfo()"></div>
+    <div class="shrimp">
+      <div class="mustache1"></div>
+      <div class="mustache2"></div>
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+      <div class="leg1"></div>
+      <div class="leg2"></div>
+      <div class="leg3"></div>
+    </div><div id="shrimpinfo" style="display: none;">Help fish grow</div>
+    <div class="elixirwrap">
     <div id="elixir" onClick="elixir()" onmouseover="elixirinfo()">
 <div id="elixirinfo" style="display: none;">Attract rare fish</div>
     <div class="bottle">
@@ -86,7 +98,6 @@
         <div class="bottle_main">
             <div class="bottle_inner">
                 <div class="water">
-                
                     <div class="cloverTop">
                         <div class="clover">
                             <div class="leaves">
@@ -127,11 +138,19 @@
         </div>
     </div>
 </div>
+</div>
   </div>
-  <div class="ducks-offspring"></div>
-  <div class="ducks-init row0">
+  <div class="ducks-offspring newrow"></div>
+  <div class="ducks-init row0 current">
 <div class="eggwrap"><img draggable="true" src="img/egg-female.png" class="duckegg" id="duckegg1" onClick="choice(this)"></div>
 <div class="eggwrap"><img draggable="true" src="img/egg-male.png" class="duckegg" id="duckegg2" onClick="choice(this)"></div>
+ <div class="holder holder-init ">
+    <div class="floatingmaterial"></div>
+    <div class="floatingmaterial fmleft"></div>
+    <div class="floatingmaterial fmright"></div>
+      <div class="floatingmaterial fmbottomleft"></div>
+     <div class="floatingmaterial fmbottomright"></div>
+ </div>
   </div>
 
 </div>
