@@ -7,6 +7,10 @@ var dirnum=0;
 var dir=[90,-270,270,450,-450,-630];
 $('#moneybag').html(money);//init
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
+var randomquotes=["When in doubt, mumble.","I intend to live forever. So far, so good.","Artificial intelligence is no match for natural stupidity.","Change is inevitable, except from a vending machine.",
+"We never really grow up, we only learn how to act in public.","Laugh at your problems, everybody else does.","A clear conscience is usually the sign of a bad memory.",
+"You're never too old to learn something stupid.","He who smiles in a crisis has found someone to blame."]
+
 //set seagrass
 grass(200,0);
 
@@ -246,7 +250,9 @@ function tip(text,e){
   	cleanbubble();
  }
 function ducklingtip(e){
-  var randomtime=Math.floor(Math.random())+1;
+  var randomtime=Math.random();
+  var randomindex=Math.floor(randomtime*10);
+  var randomquote='<div class="speakbubble">'+randomquotes[randomindex]+'</div>';
   cleanbubble();
  switch (count) {
   case 0:
@@ -262,8 +268,12 @@ function ducklingtip(e){
   		tip('<div class="speakbubble">When I grow up I can lay eggs! Kwak!</div>',e);
   		count++;
   		break;
+ case 3:
+  		tip('<div class="speakbubble">When I grow up I can lay eggs! Kwak!</div>',e);
+  		count++;
+  		break;
   default:
-  		tip('<div class="speakbubble">I can also feed my friends, and fish...</div>',e);
+  		tip(randomquote,e);
   		break;
  }
   setTimeout(function(){
