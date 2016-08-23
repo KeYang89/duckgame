@@ -341,7 +341,7 @@ function layEgg(e) {
 		rownum=rownum+0.1;
 		//$('.ducks-offspring').removeClass('newrow');
 		if (Math.floor(rownum)<Math.floor(rownum+0.1)){
-		rownum=rownum+0.1;
+		rownum=Math.floor(rownum+1);
 		rowClass='row'+Math.floor(rownum);
 		rowMarginTop=70-Math.floor(rownum)*20+'vh';
 		$('<div class="newrow"></div>').appendTo('.ducks-offspring');
