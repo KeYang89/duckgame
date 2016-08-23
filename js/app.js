@@ -218,11 +218,13 @@ function duck(e){
 		},220);	
 		setTimeout(function(){
 			$('.holder-init').css("margin-top","-160px");
+			$('<div class="speakbubble">Yeah more!</div>').insertBefore(e);
 			$('.holder-init >.fmleft').css("margin-top","60px");
 			$('.holder-init >.fmright').css("margin-top","60px");
 			$('.holder-init >.fmleft').css("transform","rotate(30deg)");
 			$('.holder-init >.fmright').css("transform","rotate(-30deg)");
-		},420);	
+		},420);
+		cleanbubble();	
 		birds();
 		poop(e);
 		die();
@@ -351,13 +353,14 @@ function layEgg(e) {
 		rownum=rownum+0.1;
 		//$('.ducks-offspring').removeClass('newrow');
 		if (Math.floor(rownum)<Math.floor(rownum+0.1)){
-		rownum=Math.floor(rownum+1);
-		rowClass='row'+Math.floor(rownum);
-		rowMarginTop=70-Math.floor(rownum)*20+'vh';
+		rownum=Math.floor(rownum+0.1);
+		rowClass='row'+rownum;
+		//rowMarginTop=70-rownum*20+'vh';
+		rowMarginTop=rownum*(-20)+'vh';
 		$('<div class="newrow"></div>').appendTo('.ducks-offspring');
 		$('.newrow').addClass(rowClass);
-		$(rowClass).css("position","absolute");
-		$(rowClass).css("margin-top",rowMarginTop);
+		$('.newrow:nth-last-of-type(1)').css("position","absolute");
+		$('.newrow:nth-last-of-type(1)').css("margin-top",rowMarginTop);
 			}
 		}
 		else {
