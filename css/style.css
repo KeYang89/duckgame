@@ -13,6 +13,7 @@ button {
   border:none;
   cursor: pointer;
 }
+
 .holder {
     position: relative;
     width: 100%;
@@ -1640,33 +1641,19 @@ width: 100px;
 -webkit-animation: bounce 2s infinite;
 animation: bounce 2s infinite;
 }
-
-div #fish2{
+.veryrarefish{
+background-image: url(/img/veryrarefish.gif);
+width: 100px;
   animation-delay: 0.5s;
   -webkit-animation-delay: 0.5s;
 }
-
-div #fish3{
+.rarefish{
+background-image: url(/img/rarefish.gif);
+width: 100px;
   animation-delay: 0.2s;
   -webkit-animation-delay: 0.2s;
 }
-
-div #fish4{
-  animation-delay: 0.4s;
-  -webkit-animation-delay: 0.4s;
-}
-
-div #fish5{
-  animation-delay: 0.1s;
-  -webkit-animation-delay: 0.1s;
-}
-
-div #fish6{
-  animation-delay: 0.3s;
-  -webkit-animation-delay: 0.3s;
-}
-
-/**/
+/*fish animation*/
 @-moz-keyframes bounce {
   0%, 50%, 100% {
     -moz-transform: translateY(0);
