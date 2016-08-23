@@ -1635,23 +1635,36 @@ div.fish{
   animation-timing-function: linear;
   -webkit-animation-timing-function: linear;
 }
-.fishgroupN {
-width: 100px;
--moz-animation: bounce 2s infinite;
--webkit-animation: bounce 2s infinite;
-animation: bounce 2s infinite;
-}
+
 .veryrarefish{
-background-image: url(/img/veryrarefish.gif);
-width: 100px;
-  animation-delay: 0.5s;
-  -webkit-animation-delay: 0.5s;
+    background-image: url(../img/veryrarefish.gif);
+    width: 80px;
+    position: absolute;
+    background-size: contain;
+    animation-delay: 0.5s;
+    -webkit-animation-delay: 0.5s;
+    height: 70px;
+    bottom: 0px;
+    -moz-animation: bounce 2s infinite;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+    margin-left: 100px;
+    margin-bottom: -30px;
 }
 .rarefish{
-background-image: url(/img/rarefish.gif);
-width: 100px;
-  animation-delay: 0.2s;
-  -webkit-animation-delay: 0.2s;
+  background-image: url(../img/rarefish.gif);
+  width: 70px;
+  position: absolute;
+  background-size: contain;
+  animation-delay: 0.5s;    
+  -webkit-animation-delay: 0.5s;
+  height: 60px;
+  bottom: 0px;
+  -moz-animation: bounce 2s infinite;
+  webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+  margin-left: 100px;
+  margin-bottom: -30px;
 }
 /*fish animation*/
 @-moz-keyframes bounce {
