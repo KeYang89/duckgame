@@ -1534,6 +1534,11 @@ position:absolute; left:0px; top:0px; display:block; height:15px; width:20px;  b
 .newegg{
   margin-bottom: 20px;
   margin-left: 6px;
+background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  border-radius: 40px;
 }
 img.duckegg {
   max-width: 100px;
@@ -1543,7 +1548,7 @@ img.duckegg {
   height:100px;
   top: 0px;
 }
-.eggwrap:nth-of-type(even)>.hatched {
+.eggwrap:nth-of-type(17n+2)>.hatched {
   -webkit-filter: hue-rotate(140deg); /* Chrome, Safari, Opera */
   filter: hue-rotate(120deg);
 }
@@ -1554,6 +1559,22 @@ img.duckegg {
 .eggwrap:nth-of-type(5n+0)>.hatched {
   -webkit-filter: hue-rotate(-90deg); /* Chrome, Safari, Opera */
   filter: hue-rotate(-90deg);
+}
+.eggwrap:nth-of-type(7n+0)>.hatched {
+  -webkit-filter: hue-rotate(-50deg); /* Chrome, Safari, Opera */
+  filter: hue-rotate(-50deg);
+}
+.eggwrap:nth-of-type(11n+0)>.hatched  {
+  -webkit-filter: hue-rotate(100deg); /* Chrome, Safari, Opera */
+  filter: hue-rotate(100deg);
+}
+.eggwrap:nth-of-type(13n+0)>.hatched  {
+  -webkit-filter: hue-rotate(160deg); /* Chrome, Safari, Opera */
+  filter: hue-rotate(160deg);
+}
+.eggwrap:nth-of-type(19n+0)>.hatched  {
+  -webkit-filter: hue-rotate(200deg); /* Chrome, Safari, Opera */
+  filter: hue-rotate(200deg);
 }
 /*End Duck Egg Animation*/
 /* Fish Animation */

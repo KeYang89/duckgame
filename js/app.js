@@ -4,7 +4,7 @@ var money = 25;
 var count=0;
 var rownum=0;
 var dirnum=0;
-var dir=[90,-270,270,450,-450];
+var dir=[90,-270,270,450,-450,-630];
 $('#moneybag').html(money);//init
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
 //set seagrass
@@ -329,7 +329,7 @@ function layEgg(e) {
  	$(e).addClass("mature");
  	duck(e);
  	
- 	setTimeout(function(){$('<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>').appendTo('.newrow')},400); 
+ 	setTimeout(function(){$('<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>').appendTo('.newrow:nth-last-of-type(1)')},400); 
 	
 	
 	if (dirnum < 6){
@@ -338,14 +338,17 @@ function layEgg(e) {
 	}
 	else {
 		if (rownum < 4){
-		rownum=rownum+1;
-		$('.ducks-offspring').removeClass('newrow');
-		rowClass='row'+rownum;
-		rowMarginTop=70-rownum*20+'vh';
-		$('.ducks-offspring').addClass(rowClass);
-		$('<div class="newrow"></div>').insertAfter('.ducks-offspring');
-		$('.newrow').css("position","absolute");
-		$('.newrow').css("margin-top",rowMarginTop);
+		rownum=rownum+0.1;
+		//$('.ducks-offspring').removeClass('newrow');
+		if (Math.floor(rownum)<Math.floor(rownum+0.1)){
+		rownum=rownum+0.1;
+		rowClass='row'+Math.floor(rownum);
+		rowMarginTop=70-Math.floor(rownum)*20+'vh';
+		$('<div class="newrow"></div>').appendTo('.ducks-offspring');
+		$('.newrow').addClass(rowClass);
+		$(rowClass).css("position","absolute");
+		$(rowClass).css("margin-top",rowMarginTop);
+			}
 		}
 		else {
 			$('<div id="gameovermessage"><img src="img/ducklingInSea.gif"  width="100" align="left"><p>The game is over, and I hope you enjoy it.<img src="img/fish_left.gif"  width="80" align="right"><img src="img/fish_right.gif"  width="80" align="right"></p><iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.narrativecard.com%2Fduckgame&layout=button_count&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>').appendTo("#sea");
