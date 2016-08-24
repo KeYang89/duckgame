@@ -1,7 +1,19 @@
+/***
+ *      _           _                 _            _    
+ *     | |         | |               | |          | |   
+ *     | |__   ___ | |__   ___     __| |_   _  ___| | __
+ *     | '_ \ / _ \| '_ \ / _ \   / _` | | | |/ __| |/ /
+ *     | | | | (_) | |_) | (_) | | (_| | |_| | (__|   < 
+ *     |_| |_|\___/|_.__/ \___/   \__,_|\__,_|\___|_|\_\
+ *                                                      
+ * I wish you like this game, or find the script useful in some wway. 
+ * If you have any question, drop me a line: yangkecoy@gmail.com
+ * Engjoy coding.                                                      
+ */
 var hatchtime=2100;
 var bubbletime=2700;
 var money = 25;
-var count=0;
+var ducklingwords=0;
 var rownum=0;
 var dirnum=0;
 var dir=[90,-270,270,450,-450,-630];
@@ -9,21 +21,30 @@ var hasrarefish=false;
 var hasrareduck=false;
 var rareducknum=0;
 var rarefishnum=0;
-var ducknum=2;
-var sellnum=0;
+var ducknum=2;//eggs, ducks and ducklings
+var sellnum=0;//sold eggs
 var vacantnum=0;
+var hatchnum=0;//ducks and ducklings
 var duckperRow=14;
 var levelupducknum=2+duckperRow*rownum;
 var rareduckmessage=true;
 var hasvacant=false;
 $('#moneybag').html(money);//init
 var levelup=false;
+// if you want to make this game more dynamic, you can add this
+// var duckgroup =
+// {
+// duckdata:[],
+// eggdata:[]
+// };
+$(".progressmessage").hide();
 var progressmessage=[
-	'<div class="progressmessage"><p>Thanks for the rare fish! You now have a rare mutant duck! A pair of them can produce really cool eggs!</p></div>',
-	'<div class="progressmessage"><p>Wow, you are Level 2 now! You receive one silver coin for bonus! </p></div>',
-	'<div class="progressmessage"><p>Wow, you are Level 3 now! You receive two gold coins for bonus! </p></div>',
-	'<div class="progressmessage"><p>Congratulations! You are Level 4 now! You receive another three gold coins for bonus! Try the elixir!</p></div>',
-	'<div class="progressmessage">Feed them, and check their eggs!</div>'
+	'Thanks for the elixir! You now have a rare mutant duck! A pair of them can produce really cool eggs!',
+	'Wow, you are Level 2 now! You receive one silver coin for bonus!',
+	'Wow, you are Level 3 now! You receive two gold coins for bonus!',
+	'Congratulations! You are Level 4 now!You receive another three gold coins for bonus! Try the elixir!',
+	'You got a pair of mutants! Feed them, and check their eggs!',
+	'Catch the rare fish before they leave!<br> Feed your baby ducklings! Rare fish can turn your ducklings into a mutant.'
 ]
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
 var randomquotes=["It takes more than one rare duck to make rare eggs!","When in doubt, mumble.","I intend to live forever. So far, so good.","Artificial intelligence is no match for natural stupidity.","Change is inevitable, except from a vending machine.",
@@ -32,7 +53,11 @@ var randomquotes=["It takes more than one rare duck to make rare eggs!","When in
 
 //set seagrass
 grass(200,0);
-
+function progress(num){
+			$(".progressmessage").html(progressmessage[num]);
+			$(".progressmessage").show();
+			$(".progressmessage").fadeOut(4500);
+}
 function eggholder(dirnum){
 	var holderstring='<div class="holder newholder"><div class="floatingmaterial"></div><div class="floatingmaterial fmbottomleft"></div><div class="floatingmaterial fmbottomright"></div></div>';
 	var marginstring='calc(50%';
@@ -70,6 +95,10 @@ for (var i = 0; i < numberOfBlades; i++) {
 }
 }
 //end of seagrass setting
+function ballooninfo(){
+	$('#ballooninfo').show();
+	$('#ballooninfo').fadeOut(3000);	
+}
 function moneybaginfo(){
 	$('#moneybaginfo').show();
 	$('#moneybaginfo').fadeOut(3000);	
@@ -135,6 +164,7 @@ setTimeout(function(){
 }
 function elixir(){
 	cleanbubble();
+	progress(5);
 	$('#elixirinfo').remove();
 	if (money>=20){
 	money=money-20;
@@ -192,7 +222,6 @@ function birds(){
 function cleanbubble() {
 	$('.speakbubble').addClass('past');
 	$('.past').remove();
-	$('.progressmessage').remove();	
 }
 function choice(e){
 	function eggChoice(e) {
@@ -216,6 +245,7 @@ function choice(e){
 }
 function hatchEgg(e) {
 	   cleanbubble();
+	   hatchnum+=1;
 		var imgUrlegg = 'img/break-egg.gif';
     	$(e).attr('src',imgUrlegg);
     	$(e).removeAttr('id');
@@ -224,6 +254,14 @@ function hatchEgg(e) {
     	$(e).addClass("hatched");
     	$(e).addClass("nofish");
     	duckling(e);
+   // if you want to make this game more dynamic, you can use this
+   //  	duckgroup.duckdata.push (
+   //  	{
+   //  		id:hatchnum,
+			// locationX:Math.floor(rownum),
+			// locationY:hatchnum-Math.floor(rownum)*duckperRow,
+   //  	}
+   //  	);
    }
 function digesting(e){
 		if(($(e).width()<112) && (!$(e).hasClass("mature"))){
@@ -241,12 +279,11 @@ function duck(e){
 			if ($(e).hasClass('rareduck')){
 			var imgUrlduck='img/rareduck.gif';
 			if (rareduckmessage){
-			$(progressmessage[0]).appendTo("#sea");
+				progress(0);
 				rareduckmessage=false;
 			}
 			if (rareducknum>1){
-			$(progressmessage[4]).appendTo("#sea");
-				
+				progress(4);
 			}
 			}
 			else{
@@ -256,7 +293,7 @@ function duck(e){
 		},220);	
 		setTimeout(function(){
 			$('.holder-init').css("margin-top","-160px");
-			$('<div class="speakbubble">Yeah more!</div>').insertBefore(e);
+			//$('<div class="speakbubble">Yeah more!</div>').insertBefore(e);
 			$('.holder-init >.fmleft').css("margin-top","60px");
 			$('.holder-init >.fmright').css("margin-top","60px");
 			$('.holder-init >.fmleft').css("transform","rotate(30deg)");
@@ -280,7 +317,8 @@ function duckling(e){
 function grow(e){
 	$(e).addClass("fleging");
 	setTimeout(function() {
-					$(e).animate({"height":"+=25px","top":"-=12px"},500)
+					$(e).animate({"height":"+=25px","margin-top":"-=12px"},500);
+					$('.newrow').animate({"margin-top":"-=6px"});
 					},1000);
 }
 function tip(text,e){
@@ -289,28 +327,38 @@ function tip(text,e){
   		},200);	
   	cleanbubble();
  }
+ function ducktip(e){
+  var randomtime=Math.random();
+  var randomindex=Math.floor(randomtime*10);
+  var randomquote='<div class="speakbubble">'+randomquotes[randomindex]+'</div>';
+  cleanbubble();
+  tip(randomquote,e);
+  setTimeout(function(){
+  		$('.speakbubble').remove()
+  	},bubbletime);
+}
 function ducklingtip(e){
   var randomtime=Math.random();
   var randomindex=Math.floor(randomtime*10);
   var randomquote='<div class="speakbubble">'+randomquotes[randomindex]+'</div>';
   cleanbubble();
- switch (count) {
+ switch (ducklingwords) {
   case 0:
   		tip('<div class="speakbubble">Kwak! Feed me please! Kwak!</div>',e);
-		count++;
+		ducklingwords++;
 	break;
   
   case 1:
  		tip('<div class="speakbubble">I can catch fish! I can grow!</div>',e);
-		count++;
+		ducklingwords++;
 		break;
   case 2:
   		tip('<div class="speakbubble">When I grow up I can lay eggs! Kwak!</div>',e);
-  		count++;
+  		ducklingwords++;
   		break;
  case 3:
   		tip('<div class="speakbubble">When I grow up I can lay eggs! Kwak!</div>',e);
-  		count++;
+  		ducklingwords++;
   		break;
   default:
   		tip(randomquote,e);
@@ -388,16 +436,18 @@ function addrow(){
 	if (Math.floor(rownum)<Math.floor(rownum+growRate)){
 		rownum=Math.floor(rownum+growRate);
 		levelup=true;
-		var progressindex=rownum-1;
-		$(progressmessage[progressindex]).appendTo('#sea');
+		var progressindex=rownum;
+		progress(progressindex);
 				rowClass='row'+rownum;
 				rowMarginTop=rownum*(-120)+'px';
 				$('<div class="newrow"></div>').appendTo('.ducks-offspring');
+				$('.newrow:nth-last-of-type(1)').addClass(rowClass);
 				$('.newrow:nth-last-of-type(1)').css("margin-top",rowMarginTop);
 		}
 	}
 }
 function layEgg(e) {
+	cleanbubble();
  	ducknum=ducknum+1;
  	var eggobj={
  		regular:'<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>',
@@ -431,8 +481,6 @@ function layEgg(e) {
 	else {
 		if (rownum < 4){
 			addrow();
-			setTimeout(function(){
-				$('.progressmessage').remove();}, 1000);
 				if (levelup && rownum==1){
 				
 				releaseCoin.silver();
@@ -458,7 +506,7 @@ function layEgg(e) {
 				}
 			}
 		else {
-			$('<div id="gameovermessage"><img src="img/duckling.gif"  width="100" align="left"><p>The game is over, and I hope you enjoy it.<img src="img/fish_left.gif"  width="80" align="right"><img src="img/fish_right.gif"  width="80" align="right"></p><iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.narrativecard.com%2Fduckgame&layout=button_count&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>').appendTo("#sea");
+			$('<div id="gameovermessage"><img src="img/duckling.gif"  width="100" align="left"><p>The game is over, and I hope you enjoy it.<img src="img/fish_left.gif"  width="80" align="right"><img src="img/fish_right.gif"  width="80" align="right"></p><iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.narrativecard.com%2Fduckgame&layout=button_ducklingwords&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>').appendTo("#sea");
 		}
 	}
 shake(200,'.newegg',2,30);	

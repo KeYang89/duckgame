@@ -1,3 +1,15 @@
+/***
+ *      _           _                 _            _    
+ *     | |         | |               | |          | |   
+ *     | |__   ___ | |__   ___     __| |_   _  ___| | __
+ *     | '_ \ / _ \| '_ \ / _ \   / _` | | | |/ __| |/ /
+ *     | | | | (_) | |_) | (_) | | (_| | |_| | (__|   < 
+ *     |_| |_|\___/|_.__/ \___/   \__,_|\__,_|\___|_|\_\
+ *                                                      
+ * I wish you like this game, or find the script useful in some wway. 
+ * If you have any question, drop me a line: yangkecoy@gmail.com
+ * Engjoy coding.                                                      
+ */
 body {
   margin: 0 !important;
   background: #7ac9ff;
@@ -29,7 +41,7 @@ button {
   -filter:grayscale(80%);
   -webkit-filter:grayscale(80%);
   position: absolute;
-  top: -60px;
+  top: -160px;
   right: 0px;
   z-index: 999;
   cursor: pointer;
@@ -43,8 +55,16 @@ button {
   transition: top 1s;
 }
 /*Toolset top*/
-
-
+#ballooninfo {
+    position: absolute;
+    top: 290px;
+    font-family: Arial;
+    width: 100px;
+    left: -20px;
+    padding:5px;
+    border: 5px solid #5a8f00;
+    background: white;
+}
 .balloonwrap{
   position: absolute;
   left: 50%;
@@ -116,6 +136,7 @@ button {
   -moz-animation: bounce 2s infinite;
   -webkit-animation: bounce 2s infinite;
   animation: bounce 2s infinite;
+  top: 160px;
 }
 
 
@@ -1499,11 +1520,16 @@ position:absolute; left:0px; top:0px; display:block; height:15px; width:20px;  b
     min-width: 160px;
     z-index: 9999;
 }
-.row1{
-}
-.row2{
-}
-.row3{
+.row1 > .eggwrap.newegg:before, .row2 > .eggwrap.newegg:before,.row3 > .eggwrap.newegg:before  {
+    content: "";
+    width: 100px;
+    height: 34px;
+    bottom: 0px;
+    box-shadow: inset 0px -4px 2px 2px #b1a287;
+    z-index: -1;
+    background: #ede3c8;background: linear-gradient(to right, #e9dfc4 0%, #e9dfc4 1%, #ede3c8 2%, #ede3c8 24%, #ebddc3 25%, #e9dfc4 48%, #ebddc3 49%, #e6d8bd 52%, #e6d8bd 53%, #e9dbc0 54%, #e6d8bd 55%, #e6d8bd 56%, #e9dbc0 57%, #e6d8bd 58%, #e6d8bd 73%, #e9dbc0 74%, #e9dbc0 98%, #ebddc3 100%);
+    position: absolute;
+    border-radius: 50px;
 }
 .small{
     padding: 6px 8px;
