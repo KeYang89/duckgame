@@ -9,7 +9,19 @@ var hasrarefish=false;
 var hasrareduck=false;
 var rareducknum=0;
 var rarefishnum=0;
+var ducknum=2;
+var duckperRow=14;
+var levelupducknum=2+duckperRow*rownum;
+var rareduckmessage=true;
 $('#moneybag').html(money);//init
+var levelup=false;
+var progressmessage=[
+	'<div class="progressmessage"><p>Thanks for the rare fish! You now have a rare mutant duck! A pair of them can produce really cool eggs!</p></div>',
+	'<div class="progressmessage"><p>Wow, you are Level 2 now! You receive one silver coin for bonus! </p></div>',
+	'<div class="progressmessage"><p>Wow, you are Level 3 now! You receive two gold coins for bonus! </p></div>',
+	'<div class="progressmessage"><p>Congratulations! You are Level 4 now! You receive another three gold coins for bonus! Try the elixir!</p></div>',
+	'<div class="progressmessage">Feed them, and check their eggs!</div>'
+]
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
 var randomquotes=["It takes more than one rare duck to make rare eggs!","When in doubt, mumble.","I intend to live forever. So far, so good.","Artificial intelligence is no match for natural stupidity.","Change is inevitable, except from a vending machine.",
 "We never really grow up, we only learn how to act in public.","My creator thinks I am too cute to be real.","Laugh at your problems, everybody else does.","A clear conscience is usually the sign of a bad memory.",
@@ -176,7 +188,8 @@ function birds(){
 }
 function cleanbubble() {
 	$('.speakbubble').addClass('past');
-	$('.past').remove();	
+	$('.past').remove();
+	$('.progressmessage').remove();	
 }
 function choice(e){
 	function eggChoice(e) {
@@ -224,6 +237,14 @@ function duck(e){
 		setTimeout(function(){
 			if ($(e).hasClass('rareduck')){
 			var imgUrlduck='img/rareduck.gif';
+			if (rareduckmessage){
+			$(progressmessage[0]).appendTo("#sea");
+				rareduckmessage=false;
+			}
+			if (rareducknum>1){
+			$(progressmessage[4]).appendTo("#sea");
+				
+			}
 			}
 			else{
 			var imgUrlduck= 'img/duck.gif';
@@ -299,6 +320,7 @@ function ducklingtip(e){
 function sellEgg(e) {
 	cleanbubble();
 	$('.coin').remove();
+	ducknum=ducknum-1;
 	$(e).fadeOut("slow",shake(50,e,4,8));
 	$(e).addClass("sold");
   	
@@ -348,8 +370,21 @@ function poop(e,size) {
 function age() {
 //to be continued
 }
+function addrow(){
+	var growRate=1.0/duckperRow;
+	rownum=rownum+growRate;
+	if (Math.floor(rownum)<Math.floor(rownum+growRate)){
+		rownum=Math.floor(rownum+growRate);
+		levelup=true;
+				rowClass='row'+rownum;
+				rowMarginTop=rownum*(-120)+'px';
+				$('<div class="newrow"></div>').appendTo('.ducks-offspring');
+				$('.newrow:nth-last-of-type(1)').css("margin-top",rowMarginTop);
+
+		}
+}
 function layEgg(e) {
- 	
+ 	ducknum=ducknum+1;
  	if (rareducknum<2){
  	setTimeout(function(){$('<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>').appendTo('.newrow:nth-last-of-type(1)')},400); 
 	}
@@ -359,30 +394,44 @@ function layEgg(e) {
 	
 	if (dirnum < 6){
 	eggholder(dirnum);
+	//eggholder for the first row
+	rownum=rownum+1.0/duckperRow;
 	dirnum=dirnum+1;
 	}
 	else {
 		if (rownum < 4){
-		rownum=rownum+0.15;
-		//$('.ducks-offspring').removeClass('newrow');
-		if (Math.floor(rownum)<Math.floor(rownum+0.15)){
-		rownum=Math.floor(rownum+0.15);
-		rowClass='row'+rownum;
-		//rowMarginTop=70-rownum*20+'vh';
-		rowMarginTop=rownum*(-20)+'vh';
-		$('<div class="newrow"></div>').appendTo('.ducks-offspring');
-		$('.newrow').addClass(rowClass);
-		$('.newrow:nth-last-of-type(1)').css("position","absolute");
-		$('.newrow:nth-last-of-type(1)').css("margin-top",rowMarginTop);
+			addrow();
+
+			
+				if (levelup && rownum==1){
+				$(progressmessage[1]).appendTo('#sea');
+				releaseCoin.silver();
+				money+=2;
+				$('#moneybag').html(money);
+				levelup=false;
+				}
+		
+				if (levelup && rownum==2){
+				$(progressmessage[2]).appendTo('#sea');
+				releaseCoin.gold();
+				money+=10;
+				$('#moneybag').html(money);
+				levelup=false;
+				}
+
+				if (levelup && rownum==3){
+				$(progressmessage[3]).appendTo('#sea');
+				releaseCoin.gold();
+				money+=15;
+				$('#moneybag').html(money);
+				levelup=false;
+				}
 			}
-		}
 		else {
 			$('<div id="gameovermessage"><img src="img/duckling.gif"  width="100" align="left"><p>The game is over, and I hope you enjoy it.<img src="img/fish_left.gif"  width="80" align="right"><img src="img/fish_right.gif"  width="80" align="right"></p><iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.narrativecard.com%2Fduckgame&layout=button_count&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>').appendTo("#sea");
 		}
 	}
-shake(200,'.newegg',2,30);
-	
-	
+shake(200,'.newegg',2,30);	
 }
 function passFish(e) {
 	$('.choice').remove();

@@ -43,6 +43,104 @@ button {
   transition: top 1s;
 }
 /*Toolset top*/
+
+
+.balloonwrap{
+  position: absolute;
+  left: 50%;
+  margin: auto;
+  margin-top: 70px;
+  width: 200px;
+  animation: float 15s infinite;
+}
+
+.balloon {
+  positon: relative;
+  background: #bbcb45;
+  box-shadow: inset 0px -6px 8px 1px #67cb45,inset 6px 2px 20px 1px #53cb42; 
+ border-radius: 50%;
+  width: 70px;
+  height: 90px;
+}
+
+.balloon-tail {
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid green;
+  border-radius: 50%;
+  position: absolute;
+  left: 25px;
+  top: 90px;
+}
+
+.balloonstring {
+  position: absolute;
+  left: 35px;
+  background-color: green;
+  width: 1px;
+  height: 200px;
+}
+
+.balloonstring-tail {
+  position: absolute;
+  left: 40px;
+  border-bottom: 2px solid green;
+  border-radius: 40%;
+  transform: rotate(30deg);
+  width: 10px;
+  height: 15px;
+}
+
+.balloontie { 
+  top: 244px;
+  left: 11px;
+  border: 1px solid green;
+  position: absolute;
+  border-radius: 50%;
+  transform: rotate(30deg);
+  width: 25px;
+  height: 15px;
+}
+
+.tie-2 {
+  left: 34px;
+  top: 245px;
+  transform: rotate(-20deg);
+}
+
+.balloonstaticwrap{
+  position: absolute;
+  left:20px;
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+
+@keyframes float {
+  from {
+    transform: translateY(400px);
+  }
+  to {
+    transform: translateY(-400px);
+  }
+}
+
+@keyframes sway {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
 .floatingwrap {
     position: absolute;
     width: 160px;
@@ -95,6 +193,20 @@ button {
     background: -ms-linear-gradient(left, #f29548 0%, #f29548 1%, #dfb580 2%, #dfb580 24%, #b4956e 25%, #f29548 48%, #b4956e 49%, #c19f5f 52%, #c19f5f 53%, #e3ce77 54%, #c19f5f 55%, #c19f5f 56%, #e3ce77 57%, #c19f5f 58%, #c19f5f 73%, #e3ce77 74%, #e3ce77 98%, #b4956e 100%);
     background: linear-gradient(to right, #f29548 0%, #f29548 1%, #dfb580 2%, #dfb580 24%, #b4956e 25%, #f29548 48%, #b4956e 49%, #c19f5f 52%, #c19f5f 53%, #e3ce77 54%, #c19f5f 55%, #c19f5f 56%, #e3ce77 57%, #c19f5f 58%, #c19f5f 73%, #e3ce77 74%, #e3ce77 98%, #b4956e 100%);
 }
+.fmbottomleft:after{
+border-radius: 50%;
+    background-color: #00da1b;
+    border-right: solid 5px #1c1;
+    border-top-right-radius: 100%;
+    content: "";
+    transform: rotate(15deg);
+    z-index: 999;
+    padding: 2px;
+    height: 10px;
+    width: 35px;
+    position: absolute;
+    box-shadow: inset 2px -2px 4px 2px #546558;
+  }
 .fmbottomright{
     position: absolute;
     box-shadow: inset 0px -1px 0px 1px #e4c851; 
@@ -112,6 +224,20 @@ button {
     background: -ms-linear-gradient(left, #d78548 0%, #d78548 1%, #e5be89 2%, #e5be89 24%, #dfac91 25%, #d78548 48%, #dfac91 49%, #c28f5f 52%, #c28f5f 53%, #e3ce77 54%, #c28f5f 55%, #c28f5f 56%, #e3ce77 57%, #c28f5f 58%, #c28f5f 73%, #e3ce77 74%, #e3ce77 98%, #dfac91 100%);
     background: linear-gradient(to right, #d78548 0%, #d78548 1%, #e5be89 2%, #e5be89 24%, #dfac91 25%, #d78548 48%, #dfac91 49%, #c28f5f 52%, #c28f5f 53%, #e3ce77 54%, #c28f5f 55%, #c28f5f 56%, #e3ce77 57%, #c28f5f 58%, #c28f5f 73%, #e3ce77 74%, #e3ce77 98%, #dfac91 100%);
 }
+.fmbottomright:after{
+border-radius: 50%;
+    background-color: #00cc1b;
+    border-left: solid 5px #0c0;
+    border-top-left-radius: 100%;
+    content: "";
+    transform: rotate(10deg);
+    height: 10px;
+    padding: 1px;
+    z-index: 999;
+    width: 40px;
+    position: absolute;
+    box-shadow: inset 2px -2px 4px 2px #546558;
+  }
 .moneybagwrap {
     position: absolute;
     width: 100px;
@@ -1466,11 +1592,24 @@ position:absolute; left:0px; top:0px; display:block; height:15px; width:20px;  b
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);top:400px;}
 }
+.progressmessage {
+  display: block;
+  position: fixed;
+  z-index: 999;
+  width: 400px;
+  min-height:50px; 
+  left: 100px;
+  padding: 10px;
+  background: rgba(255,255,255,0.55);
+  font-family: Arial;
+  border: 5px gold solid;
+}
 #gameovermessage {
   display: block;
   position: fixed;
   z-index: 999;
   width: 400px;
+  left:100px;
   height: 120px;
   padding: 15px;
   background: rgba(255,255,255,0.55);
