@@ -10,9 +10,12 @@ var hasrareduck=false;
 var rareducknum=0;
 var rarefishnum=0;
 var ducknum=2;
+var sellnum=0;
+var vacantnum=0;
 var duckperRow=14;
 var levelupducknum=2+duckperRow*rownum;
 var rareduckmessage=true;
+var hasvacant=false;
 $('#moneybag').html(money);//init
 var levelup=false;
 var progressmessage=[
@@ -318,7 +321,11 @@ function ducklingtip(e){
   	},bubbletime);
 }
 function sellEgg(e) {
+	sellnum+=1;
+	vacantnum+=1;
 	cleanbubble();
+	$(e).parent().parent().addClass('hasvacant');
+	hasvacant=true;
 	$('.coin').remove();
 	ducknum=ducknum-1;
 	$(e).fadeOut("slow",shake(50,e,4,8));
@@ -373,23 +380,46 @@ function age() {
 function addrow(){
 	var growRate=1.0/duckperRow;
 	rownum=rownum+growRate;
+	if (ducknum<levelupducknum-2) {
+		//if eggs wore sold on lower rows
+
+	}
+	else {
 	if (Math.floor(rownum)<Math.floor(rownum+growRate)){
 		rownum=Math.floor(rownum+growRate);
 		levelup=true;
+		var progressindex=rownum-1;
+		$(progressmessage[progressindex]).appendTo('#sea');
 				rowClass='row'+rownum;
 				rowMarginTop=rownum*(-120)+'px';
 				$('<div class="newrow"></div>').appendTo('.ducks-offspring');
 				$('.newrow:nth-last-of-type(1)').css("margin-top",rowMarginTop);
-
 		}
+	}
 }
 function layEgg(e) {
  	ducknum=ducknum+1;
- 	if (rareducknum<2){
- 	setTimeout(function(){$('<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>').appendTo('.newrow:nth-last-of-type(1)')},400); 
-	}
-	else {
-	setTimeout(function(){$('<div class="eggwrap newegg"><img draggable="true" src="img/rareEgg.gif" class="duckegg rareduck" onClick="choice(this)"></div>').appendTo('.newrow:nth-last-of-type(1)')},400); 
+ 	var eggobj={
+ 		regular:'<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>',
+ 		rare: '<div class="eggwrap newegg"><img draggable="true" src="img/rareEgg.gif" class="duckegg rareduck" onClick="choice(this)"></div>'
+ 	}
+ 	if (vacantnum>0) {
+ 		vacantnum-=1;
+ 		if (rareducknum<2){
+ 		setTimeout(function(){$(eggobj.regular).appendTo('.hasvacant')},400); 
+ 		}
+ 		else {
+		setTimeout(function(){$(eggobj.rare).appendTo('.hasvacant')},400); 
+		}
+		//hasvacant=false;
+ 	}
+ 	else {
+ 		if (rareducknum<2){
+ 		setTimeout(function(){$(eggobj.regular).appendTo('.newrow:nth-last-of-type(1)')},400); 
+		}
+		else {
+		setTimeout(function(){$(eggobj.rare).appendTo('.newrow:nth-last-of-type(1)')},400); 
+		}
 	}
 	
 	if (dirnum < 6){
@@ -401,10 +431,10 @@ function layEgg(e) {
 	else {
 		if (rownum < 4){
 			addrow();
-
-			
+			setTimeout(function(){
+				$('.progressmessage').remove();}, 1000);
 				if (levelup && rownum==1){
-				$(progressmessage[1]).appendTo('#sea');
+				
 				releaseCoin.silver();
 				money+=2;
 				$('#moneybag').html(money);
@@ -412,7 +442,7 @@ function layEgg(e) {
 				}
 		
 				if (levelup && rownum==2){
-				$(progressmessage[2]).appendTo('#sea');
+				
 				releaseCoin.gold();
 				money+=10;
 				$('#moneybag').html(money);
@@ -420,7 +450,7 @@ function layEgg(e) {
 				}
 
 				if (levelup && rownum==3){
-				$(progressmessage[3]).appendTo('#sea');
+				
 				releaseCoin.gold();
 				money+=15;
 				$('#moneybag').html(money);
