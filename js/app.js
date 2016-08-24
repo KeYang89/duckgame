@@ -7,6 +7,7 @@ var dirnum=0;
 var dir=[90,-270,270,450,-450,-630];
 var hasrarefish=false;
 var hasrareduck=false;
+var rareducknum=0;
 $('#moneybag').html(money);//init
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
 var randomquotes=["When in doubt, mumble.","I intend to live forever. So far, so good.","Artificial intelligence is no match for natural stupidity.","Change is inevitable, except from a vending machine.",
@@ -483,8 +484,8 @@ function checkCollisions(target1,target2){
   var match = horizontalMatch;
 
   if (match&&$(target1).hasClass("nofish")) {
-  		if ($(e).hasClass('mature')){
-  			if ($(e).hasClass('rareduck')){
+  		if ($(target1).hasClass('mature')){
+  			if ($(target1).hasClass('rareduck')){
 				var imgUrlcatch= 'img/rareduckCatchFish.gif';
 			}
 			else {
