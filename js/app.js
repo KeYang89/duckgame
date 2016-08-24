@@ -5,10 +5,12 @@ var count=0;
 var rownum=0;
 var dirnum=0;
 var dir=[90,-270,270,450,-450,-630];
+var hasrarefish=false;
+var hasrareduck=false;
 $('#moneybag').html(money);//init
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
 var randomquotes=["When in doubt, mumble.","I intend to live forever. So far, so good.","Artificial intelligence is no match for natural stupidity.","Change is inevitable, except from a vending machine.",
-"We never really grow up, we only learn how to act in public.","Laugh at your problems, everybody else does.","A clear conscience is usually the sign of a bad memory.",
+"We never really grow up, we only learn how to act in public.","My creator thinks I am too cute to be real.","Laugh at your problems, everybody else does.","A clear conscience is usually the sign of a bad memory.",
 "You're never too old to learn something stupid.","He who smiles in a crisis has found someone to blame."]
 
 //set seagrass
@@ -119,6 +121,7 @@ function elixir(){
 	$('#elixirinfo').remove();
 	if (money>=20){
 	money=money-20;
+	hasrarefish=true;
  	$('#elixir').addClass('rotated');
  	$('.bottle_top').addClass('rotatespin');
  	$('.bottle_inner>.water').addClass('pour');
@@ -132,9 +135,10 @@ function elixir(){
  						$('<div class="rarefish"></div>').appendTo('.fishgroup2');
  					}, 3000);
  setTimeout(function(){
- 	$('rarefish').remove();
-	$('veryrarefish').remove();
-},8000);
+ 	$('.rarefish').remove();
+	$('.veryrarefish').remove();
+	//hasrarefish=false;
+},30000);
 	}
 	else {
 		$('<div class="speakbubble small hint">Elixir costs $20<br>Try something else!</div>').insertBefore('#moneybag');
@@ -213,7 +217,16 @@ function digesting(e){
 }
 function duck(e){
 		setTimeout(function(){
+			if (hasrarefish||$(e).hasClass('rareduck')){
+			var imgUrlduck='img/rareduck.gif';
+				hasrareduck=true;
+				$(e).addClass('rareduck');
+				hasrarefish=false;
+				$('.rarefish').remove();
+			}
+			else{
 			var imgUrlduck= 'img/duck.gif';
+			}
 			$(e).attr('src',imgUrlduck);
 		},220);	
 		setTimeout(function(){
@@ -231,7 +244,7 @@ function duck(e){
 	}
 function duckling(e){
 		setTimeout(function(){
-			var imgUrlduckling= 'img/ducklingInSea.gif';
+			var imgUrlduckling= 'img/duckling.gif';
 			$(e).attr('src',imgUrlduckling);
 			ducklingtip(e);
 		},hatchtime);
@@ -335,8 +348,6 @@ function age() {
 //to be continued
 }
 function layEgg(e) {
-
-	
  	$(e).removeClass("fleging");
  	$(e).addClass("mature");
  	duck(e);
@@ -350,10 +361,10 @@ function layEgg(e) {
 	}
 	else {
 		if (rownum < 4){
-		rownum=rownum+0.1;
+		rownum=rownum+0.15;
 		//$('.ducks-offspring').removeClass('newrow');
-		if (Math.floor(rownum)<Math.floor(rownum+0.1)){
-		rownum=Math.floor(rownum+0.1);
+		if (Math.floor(rownum)<Math.floor(rownum+0.15)){
+		rownum=Math.floor(rownum+0.15);
 		rowClass='row'+rownum;
 		//rowMarginTop=70-rownum*20+'vh';
 		rowMarginTop=rownum*(-20)+'vh';
@@ -364,7 +375,7 @@ function layEgg(e) {
 			}
 		}
 		else {
-			$('<div id="gameovermessage"><img src="img/ducklingInSea.gif"  width="100" align="left"><p>The game is over, and I hope you enjoy it.<img src="img/fish_left.gif"  width="80" align="right"><img src="img/fish_right.gif"  width="80" align="right"></p><iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.narrativecard.com%2Fduckgame&layout=button_count&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>').appendTo("#sea");
+			$('<div id="gameovermessage"><img src="img/duckling.gif"  width="100" align="left"><p>The game is over, and I hope you enjoy it.<img src="img/fish_left.gif"  width="80" align="right"><img src="img/fish_right.gif"  width="80" align="right"></p><iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.narrativecard.com%2Fduckgame&layout=button_count&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>').appendTo("#sea");
 		}
 	}
 shake(200,'.newegg',2,30);
@@ -373,19 +384,44 @@ shake(200,'.newegg',2,30);
 }
 function passFish(e) {
 	$('.choice').remove();
-	var imgUrlpass= 'img/ducklingInSea.gif';
+	if ($(e).hasClass('mature')){
+		if ($(e).hasClass('rareduck')){
+		var imgUrlpass= 'img/rareduck.gif';
+		}
+		else {
+		var imgUrlpass= 'img/duck.gif';
+		}
+	}
+	else{
+	var imgUrlpass= 'img/duckling.gif';
+	}
     	$(e).attr('src',imgUrlpass);
     	$(e).addClass("nofish");
     	$(e).removeClass("hasfish");
-}
+	}
 function eatFish(e) {
 	cleanbubble();
 	if($(e).hasClass("hasfish")){
 	$('<div class="speakbubble">Yummmm</div>').insertBefore(e);
 	$('.speakbubble').fadeOut('slow');
 	digesting(e);
-	var imgUrleat= 'img/ducklingInSea.gif';
+	if ($(e).hasClass('mature')){
+		if($(e).hasClass('rareduck')){
+		var imgUrleat= 'img/rareduckEat.gif';
+		var eatTime=1200;
+		}
+	    else{
+		var imgUrleat= 'img/duckEat.gif';
+		var eatTime=800;
+		}
+	}
+	else{
+	var imgUrleat= 'img/ducklingEat.gif';
+	var eatTime=800;
+	}
     	$(e).attr('src',imgUrleat);
+    	setTimeout(function(){
+    	imgUrleat=imgUrleat.replace("Eat", "");$(e).attr('src',imgUrleat);},eatTime);
     	$(e).addClass("nofish");
     	$(e).removeClass("hasfish");
     }
@@ -447,7 +483,17 @@ function checkCollisions(target1,target2){
   var match = horizontalMatch;
 
   if (match&&$(target1).hasClass("nofish")) {
-	var imgUrlcatch = 'img/duckEatFish.gif';
+  		if ($(e).hasClass('mature')){
+  			if ($(e).hasClass('rareduck')){
+				var imgUrlcatch= 'img/rareduckCatchFish.gif';
+			}
+			else {
+				var imgUrlcatch= 'img/duckCatchFish.gif';
+			}
+		}
+	else{
+	var imgUrlcatch= 'img/ducklingCatchFish.gif';
+	}
     	setTimeout(function(){$(target1).attr('src',imgUrlcatch);},200);
     	$(target1).addClass("hasfish");
     	$(target1).removeClass("nofish");
