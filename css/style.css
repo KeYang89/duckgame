@@ -179,6 +179,7 @@ button {
     top: 100px;
     margin-top: 0;
     left: 50%;
+    z-index: 9999;
     margin-left: -150px;
     animation: fly-up-down 8s infinite linear;
 }
@@ -187,6 +188,7 @@ button {
     width: 300px;
     height: 100px;
     top: 0;
+    z-index: 9999;
     margin-top: 0;
     left: 50%;
     margin-left: -150px;

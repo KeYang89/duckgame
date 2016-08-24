@@ -8,9 +8,10 @@ var dir=[90,-270,270,450,-450,-630];
 var hasrarefish=false;
 var hasrareduck=false;
 var rareducknum=0;
+var rarefishnum=0;
 $('#moneybag').html(money);//init
 $('<div class="speakbubble small">Sell eggs to get cool items!</div>').insertBefore('#moneybag');
-var randomquotes=["When in doubt, mumble.","I intend to live forever. So far, so good.","Artificial intelligence is no match for natural stupidity.","Change is inevitable, except from a vending machine.",
+var randomquotes=["It takes more than one rare duck to make rare eggs!","When in doubt, mumble.","I intend to live forever. So far, so good.","Artificial intelligence is no match for natural stupidity.","Change is inevitable, except from a vending machine.",
 "We never really grow up, we only learn how to act in public.","My creator thinks I am too cute to be real.","Laugh at your problems, everybody else does.","A clear conscience is usually the sign of a bad memory.",
 "You're never too old to learn something stupid.","He who smiles in a crisis has found someone to blame."]
 
@@ -24,12 +25,12 @@ function eggholder(dirnum){
 	var num=dir[dirnum];
 	if (num>0){
 	marginstring=marginstring+' + '+ num+'px)';
-	console.log(marginstring);
+	//console.log(marginstring);
 	}
 	else{
 	num=Math.abs(num);
 	marginstring=marginstring+' - '+ num+'px)';
-	console.log(marginstring);
+	//console.log(marginstring);
 	}
 	$('.newholder').css('margin-left',marginstring);
 	$('.holder').removeClass('newholder');
@@ -209,21 +210,20 @@ function hatchEgg(e) {
     	duckling(e);
    }
 function digesting(e){
-		if($(e).width()<112){
+		if(($(e).width()<112) && (!$(e).hasClass("mature"))){
 			grow(e);
 		}
 		else {
+			$(e).removeClass("fleging");
+ 			$(e).addClass("mature");
+ 			duck(e);
 			layEgg(e);
 		}			
 }
 function duck(e){
 		setTimeout(function(){
-			if (hasrarefish||$(e).hasClass('rareduck')){
+			if ($(e).hasClass('rareduck')){
 			var imgUrlduck='img/rareduck.gif';
-				hasrareduck=true;
-				$(e).addClass('rareduck');
-				hasrarefish=false;
-				$('.rarefish').remove();
 			}
 			else{
 			var imgUrlduck= 'img/duck.gif';
@@ -303,11 +303,11 @@ function sellEgg(e) {
 	$(e).addClass("sold");
   	
   	$('.small').fadeOut();
-  	if ($(e).hasClass("veryrare")){
+  	if ($(e).hasClass("veryrareduck")){
   		money+=5;
 		releaseCoin.gold();
   	}
-  	else if ($(e).hasClass("rare")) {
+  	else if ($(e).hasClass("rareduck")) {
   		money+=2;
 		releaseCoin.silver();
   	}
@@ -349,12 +349,13 @@ function age() {
 //to be continued
 }
 function layEgg(e) {
- 	$(e).removeClass("fleging");
- 	$(e).addClass("mature");
- 	duck(e);
  	
+ 	if (rareducknum<2){
  	setTimeout(function(){$('<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>').appendTo('.newrow:nth-last-of-type(1)')},400); 
-	
+	}
+	else {
+	setTimeout(function(){$('<div class="eggwrap newegg"><img draggable="true" src="img/rareEgg.gif" class="duckegg rareduck" onClick="choice(this)"></div>').appendTo('.newrow:nth-last-of-type(1)')},400); 
+	}
 	
 	if (dirnum < 6){
 	eggholder(dirnum);
@@ -413,12 +414,21 @@ function eatFish(e) {
 		}
 	    else{
 		var imgUrleat= 'img/duckEat.gif';
-		var eatTime=800;
+		var eatTime=1000;
 		}
 	}
 	else{
 	var imgUrleat= 'img/ducklingEat.gif';
 	var eatTime=800;
+		if (hasrarefish) {
+			hasrarefish=false;
+			hasrareduck=true;
+			if (!$(e).hasClass('rareduck')){
+					$(e).addClass('rareduck');
+					rareducknum=rareducknum+1;
+				}	
+			$('.rarefish').remove();
+		}				
 	}
     	$(e).attr('src',imgUrleat);
     	setTimeout(function(){
@@ -492,9 +502,9 @@ function checkCollisions(target1,target2){
 				var imgUrlcatch= 'img/duckCatchFish.gif';
 			}
 		}
-	else{
-	var imgUrlcatch= 'img/ducklingCatchFish.gif';
-	}
+		else{
+			var imgUrlcatch= 'img/ducklingCatchFish.gif';
+			}
     	setTimeout(function(){$(target1).attr('src',imgUrlcatch);},200);
     	$(target1).addClass("hasfish");
     	$(target1).removeClass("nofish");
