@@ -67,7 +67,7 @@ button {
 }
 .balloonwrap{
   position: absolute;
-  left: 50%;
+  left: 10%;
   margin: auto;
   margin-top: 70px;
   width: 200px;

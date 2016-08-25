@@ -506,10 +506,15 @@ function layEgg(e) {
 				}
 			}
 		else {
-			$('<div id="gameovermessage"><img src="img/duckling.gif"  width="100" align="left"><p>The game is over, and I hope you enjoy it.<img src="img/fish_left.gif"  width="80" align="right"><img src="img/fish_right.gif"  width="80" align="right"></p><iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.narrativecard.com%2Fduckgame&layout=button_ducklingwords&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>').appendTo("#sea");
-		}
+			gameover();
+			}
 	}
 shake(200,'.newegg',2,30);	
+}
+function gameover() {
+	$('.balloonstaticwrap').addClass('balloonwrap');
+	$('.balloonwrap').removeClass('balloonstaticwrap');
+	$('<div id="gameovermessage"><img src="img/duckling.gif"  width="100" align="left"><p>The game is over, and I hope you enjoy it.<img src="img/fish_left.gif"  width="80" align="right"><img src="img/fish_right.gif"  width="80" align="right"></p><iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fwww.narrativecard.com%2Fduckgame&layout=button_ducklingwords&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>').appendTo("#sea");		
 }
 function passFish(e) {
 	$('.choice').remove();
