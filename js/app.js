@@ -31,6 +31,7 @@ var rareduckmessage=true;
 var hasvacant=false;
 $('#moneybag').html(money);//init
 var levelup=false;
+var ravennum=1;
 // if you want to make this game more dynamic, you can add this
 // var duckgroup =
 // {
@@ -127,10 +128,12 @@ function owl(){
 $('#wind').show();
 $('.raven').remove();
 $('.owlwrap').hide();
+$('.ravenAttack').hide();
 $('#moneybag').html(money);
 setTimeout(function(){
 					$('#wind').hide();
 					$('<div class="raven">..</div>').appendTo('#birds');
+					$('.ravenAttack').show();
 					$('.owlwrap').show();}, 8000);
 	}
 	else {
@@ -191,6 +194,7 @@ function elixir(){
 		$('<div class="speakbubble small hint">Elixir costs $20<br>Try something else!</div>').insertBefore('#moneybag');
 	}
 }
+
 function birds(){
 	var randomtime=Math.floor(Math.random() * bubbletime)+4000;
 	var randomlocationX=Math.floor(Math.random() * 100);
@@ -449,6 +453,7 @@ function addrow(){
 function layEgg(e) {
 	cleanbubble();
  	ducknum=ducknum+1;
+ 	$('#attackingRaven:first-child').remove();
  	var eggobj={
  		regular:'<div class="eggwrap newegg"><img draggable="true" src="img/egg-female.png" class="duckegg" onClick="choice(this)"></div>',
  		rare: '<div class="eggwrap newegg"><img draggable="true" src="img/rareEgg.gif" class="duckegg rareduck" onClick="choice(this)"></div>'
@@ -510,6 +515,9 @@ function layEgg(e) {
 			}
 	}
 shake(200,'.newegg',2,30);	
+var egglocations=getEggPositions(e);
+ravenAttack(egglocations);
+setTimeout(function(){$('.ravenAttack').hide();},4500);
 }
 function gameover() {
 	$('.balloonstaticwrap').addClass('balloonwrap');
@@ -604,11 +612,9 @@ function dive(i,e,t,d) {
 function getPositions(box) {
   var $box = $(box);
   var pos = $box.offset();
-  var width = $box.width();
 
   return pos.left;
-}
-        
+} 
 function comparePositions(p1, p2) {
   var enoughClose= p1-p2;
   if (enoughClose < 50){
@@ -618,7 +624,6 @@ function comparePositions(p1, p2) {
   	return false;
   }
 }
-
 function checkCollisions(target1,target2){
   var pos = getPositions(target1);
   var pos2 = getPositions(target2);
@@ -642,4 +647,21 @@ function checkCollisions(target1,target2){
     	$(target1).removeClass("nofish");
 
 	}
+}
+function ravenAttack([x,y]) {
+	$('.ravenAttack').prepend('<img src="img/ravenAttack.gif" id="attackingRaven"/>');
+	var windowWidth=$(window).width();
+	var randomRange=Math.random() * 20;
+	var top=y-120+randomRange*2;
+	var left=x-windowWidth/2-50-randomRange;
+	$('#attackingRaven').css({"top":top,"left":left,"position":"absolute"});
+	ravennum=ravennum+1;
+	setTimeout(function(){
+		$('#attackingRaven').remove();
+	}, 9000);
+}
+function getEggPositions(box) {
+  var $box = $(box);
+  var pos = $box.offset();
+  return [pos.left,pos.top];
 }
