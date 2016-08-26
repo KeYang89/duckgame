@@ -1699,6 +1699,8 @@ position:absolute; left:0px; top:0px; display:block; height:15px; width:20px;  b
   margin-right: auto;
   margin-left: auto;
   width: 100%;
+  white-space: nowrap;
+  text-align:center;
 }
 .newegg{
   margin-bottom: 20px;
