@@ -54,6 +54,7 @@ button {
   -webkit-transition: top 1s; /* Safari */
   transition: top 1s;
 }
+
 /*Toolset top*/
 #ballooninfo {
     position: absolute;
@@ -2057,6 +2058,7 @@ div.fish{
 }
 /*Background change*/
 /*Birds*/
+.ravenAttack {position: absolute;}
 #birds {
   position:absolute;
   margin-top:20px;
