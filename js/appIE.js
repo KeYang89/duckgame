@@ -361,7 +361,7 @@ function ducklingtip(e){
   		ducklingwords++;
   		break;
  case 3:
-  		tip('<div class="speakbubble">When I grow up I can lay eggs! Kwak!</div>',e);
+  		tip('<div class="speakbubble"><a href="http://www.narrativecard.com/aboutme/draw_app.html">If you are bored, try this app</a></div>',e);
   		ducklingwords++;
   		break;
   default:
