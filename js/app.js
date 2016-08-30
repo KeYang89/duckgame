@@ -433,7 +433,7 @@ function addrow(){
 	var growRate=1.0/duckperRow;
 	rownum=rownum+growRate;
 	if (ducknum<levelupducknum-2) {
-		//if eggs wore sold on lower rows
+		//if eggs were sold on lower rows
 
 	}
 	else {
