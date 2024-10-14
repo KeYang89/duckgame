@@ -33,41 +33,18 @@ let state = {
     rareDuckMessage: true,
     ravenNum: 1,
     levelUp: false,
+    ducksWithFish: new Set(), // Track ducks with fish in their mouths
 };
 
 const directions = [90, -270, 270, 450, -450, -630];
-const progressMessages = [
-    'Thanks for the elixir! You now have a rare mutant duck!',
-    'Wow, you are Level 2 now! You receive one silver coin!',
-    'Wow, you are Level 3 now! You receive two gold coins!',
-    'Congratulations! You are Level 4 now! You get three gold coins! Try the elixir!',
-    'You got a pair of mutants! Feed them and check their eggs!',
-    'Catch the rare fish before they leave! Rare fish can mutate your ducklings!',
-];
-const randomQuotes = [
-    "It takes more than one rare duck to make rare eggs!",
-    "When in doubt, mumble.",
-    "I intend to live forever. So far, so good.",
-    "AI is no match for natural stupidity.",
-    "Change is inevitable, except from a vending machine.",
-    "We never grow up; we learn to act in public.",
-    "My creator thinks I'm too cute to be real.",
-    "Laugh at your problems; everyone else does.",
-    "A clear conscience is a sign of a bad memory.",
-    "You're never too old to learn something stupid.",
-    "He who smiles in a crisis found someone to blame.",
-];
 
 // Initialize money display
 $moneyBag.html(state.money);
-
-// Hide progress message initially
 $progressMessage.hide();
 
-// Grass generation
+// Generate Grass
 function generateGrass(num, nutrient) {
     let fragment = document.createDocumentFragment();
-
     for (let i = 0; i < num; i++) {
         let blade = document.createElement('div');
         let height = Math.floor(Math.random() * 20) + nutrient;
@@ -88,54 +65,77 @@ function generateGrass(num, nutrient) {
 }
 generateGrass(200, 0);
 
-// Progress messages display
-function showProgress(num) {
-    $progressMessage.html(progressMessages[num]).fadeIn(300).fadeOut(4500);
+// Duck feeding logic: Feed another duck if carrying fish
+function feedOtherDuck(duckWithFish) {
+    const $targetDuck = findNearbyDuck(duckWithFish);
+    if (!$targetDuck) return; // No other duck nearby
+
+    // Initiate feeding animation and logic
+    $targetDuck.addClass('eating').html('<div class="fish-icon"></div>');
+    setTimeout(() => {
+        $targetDuck.removeClass('eating');
+        growDuck($targetDuck);
+    }, 2000); // Feeding animation lasts 2 seconds
+
+    // Remove fish from the original duck
+    duckWithFish.removeClass('carrying-fish');
+    state.ducksWithFish.delete(duckWithFish);
 }
 
-// Egg holder function with better margin calculation
-function createEggHolder(dirIndex) {
-    const margin = `calc(50% ${directions[dirIndex] >= 0 ? '+' : '-'} ${Math.abs(directions[dirIndex])}px)`;
-    const holderHTML = `
-        <div class="holder newholder">
-            <div class="floatingmaterial"></div>
-            <div class="floatingmaterial fmbottomleft"></div>
-            <div class="floatingmaterial fmbottomright"></div>
-        </div>`;
-
-    $(holderHTML).insertAfter('.current').css('margin-left', margin).removeClass('newholder');
+// Find a nearby duck within a certain distance
+function findNearbyDuck($duck) {
+    const position = $duck.position();
+    const nearbyDuck = $('.duck').not($duck).filter(function () {
+        const otherPos = $(this).position();
+        const distance = Math.hypot(otherPos.left - position.left, otherPos.top - position.top);
+        return distance < 100; // Only ducks within 100px can feed each other
+    }).first();
+    return nearbyDuck.length ? nearbyDuck : null;
 }
 
-// Event handlers with debouncing
-function setupInfoPopup(selector) {
-    const $info = $(selector);
-    $info.show().fadeOut(3000);
+// Allow a duck to carry fish in its mouth
+function giveFishToDuck($duck) {
+    $duck.addClass('carrying-fish');
+    state.ducksWithFish.add($duck);
+
+    // Attempt to feed another duck after carrying fish
+    setTimeout(() => feedOtherDuck($duck), 3000); // Duck tries feeding after 3 seconds
 }
 
-function owlPurchase() {
-    if (state.money >= 2) {
-        state.money -= 2;
-        $moneyBag.html(state.money);
-
-        $('#wind').show();
-        $('.raven, .owlwrap, .ravenAttack').hide();
-
-        setTimeout(() => {
-            $('#wind').hide();
-            $('.raven').fadeIn();
-            $('.owlwrap, .ravenAttack').fadeIn();
-        }, 8000);
+// Duck growth function
+function growDuck($duck) {
+    if ($duck.width() < 112) {
+        $duck.addClass("fledgling").animate({ height: '+=25px', marginTop: '-=12px' }, 500);
+        $('.newrow').animate({ marginTop: '-=6px' }, 500);
     } else {
-        $('<div class="speakbubble small hint">Owl costs $2<br>Try something else!</div>').insertBefore('#moneybag');
+        $duck.removeClass("fledgling").addClass("mature");
+        layEgg($duck);
     }
 }
 
-function growFish() {
-    const randomSize = () => Math.floor(Math.random() * 20);
-    $('.regularfish1').width((i, w) => w + randomSize());
-    $('.regularfish2').width((i, w) => w + randomSize());
+// Lay egg function
+function layEgg($duck) {
+    $('<div class="egg"></div>').insertAfter($duck);
 }
 
+// Handle duck click to give it fish if available
+$('.duck').on('click', function () {
+    const $this = $(this);
+    if (state.money >= 3 && !$this.hasClass('carrying-fish')) {
+        state.money -= 3;
+        $moneyBag.html(state.money);
+        giveFishToDuck($this);
+    }
+});
+
+// Egg hatching
+$('.duckegg').on('click', function () {
+    const $this = $(this);
+    $this.replaceWith('<img src="img/break-egg.gif" class="hatched nofish">');
+    state.hatchNum++;
+});
+
+// Purchase Shrimp function
 function purchaseShrimp() {
     if (state.money >= 5) {
         state.money -= 5;
@@ -154,48 +154,37 @@ function purchaseShrimp() {
     }
 }
 
-function useElixir() {
-    if (state.money >= 20) {
-        state.money -= 20;
-        state.hasRareFish = true;
+// Fish growth function
+function growFish() {
+    const randomSize = () => Math.floor(Math.random() * 20);
+    $('.regularfish1').width((i, w) => w + randomSize());
+    $('.regularfish2').width((i, w) => w + randomSize());
+}
+
+// Owl purchase
+function owlPurchase() {
+    if (state.money >= 2) {
+        state.money -= 2;
         $moneyBag.html(state.money);
 
-        $('#elixir').addClass('rotated');
-        $('.bottle_top').addClass('rotatespin');
-        $('.bottle_inner>.water').addClass('pour');
+        $('#wind').show();
+        $('.raven, .owlwrap, .ravenAttack').hide();
 
         setTimeout(() => {
-            $('<div class="veryrarefish"></div>').appendTo('.fishgroup1');
-            $('<div class="rarefish"></div>').appendTo('.fishgroup2');
-        }, 3000);
-
-        setTimeout(() => {
-            $('.rarefish, .veryrarefish').remove();
-        }, 30000);
+            $('#wind').hide();
+            $('.raven').fadeIn();
+            $('.owlwrap, .ravenAttack').fadeIn();
+        }, 8000);
     } else {
-        $('<div class="speakbubble small hint">Elixir costs $20<br>Try something else!</div>').insertBefore('#moneybag');
+        $('<div class="speakbubble small hint">Owl costs $2<br>Try something else!</div>').insertBefore('#moneybag');
     }
 }
 
-// Duck growth and animations optimized
-function growDuck($duck) {
-    if ($duck.width() < 112) {
-        $duck.addClass("fleging").animate({ height: '+=25px', marginTop: '-=12px' }, 500);
-        $('.newrow').animate({ marginTop: '-=6px' }, 500);
-    } else {
-        $duck.removeClass("fleging").addClass("mature");
-        layEgg($duck);
-    }
+function die($duck) {
+    $duck.addClass('dead-duck');  // Apply gray-white effect
+    
+    // Remove or hide the duck after a while (if needed)
+    setTimeout(() => {
+        $duck.fadeOut(2000, () => $duck.remove());
+    }, 5000); // Duck fades out after 5 seconds
 }
-
-function layEgg($duck) {
-    $('<div class="egg"></div>').insertAfter($duck);
-}
-
-// Optimized event listeners
-$('.duckegg').on('click', function () {
-    let $this = $(this);
-    $this.replaceWith('<img src="img/break-egg.gif" class="hatched nofish">');
-    state.hatchNum++;
-});
-
