@@ -14,6 +14,7 @@
 const $moneyBag = $('#moneybag');
 const $progressMessage = $(".progressmessage");
 const $grass = $('.grass')[0];
+const $ballooninfo = $('#ballooninfo')
 
 let state = {
     hatchTime: 2100,
@@ -41,6 +42,9 @@ const directions = [90, -270, 270, 450, -450, -630];
 // Initialize money display
 $moneyBag.html(state.money);
 $progressMessage.hide();
+
+// Show #ballooninfo with a fade-in effect over 0.5 seconds
+$ballooninfo.fadeIn(500);  
 
 // Generate Grass
 function generateGrass(num, nutrient) {
@@ -179,7 +183,7 @@ function owlPurchase() {
         $('<div class="speakbubble small hint">Owl costs $2<br>Try something else!</div>').insertBefore('#moneybag');
     }
 }
-
+// Duck deceased
 function die($duck) {
     $duck.addClass('dead-duck');  // Apply gray-white effect
     
