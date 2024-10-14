@@ -1686,6 +1686,11 @@ position:absolute; left:0px; top:0px; display:block; height:15px; width:20px;  b
     margin-left: auto;
     width: 100%;
 }
+.dead-duck {
+    filter: grayscale(100%) brightness(1.5);
+    opacity: 0.6;
+    transition: all 1s ease-in-out;
+}
 .eggwrap {
    cursor: pointer;
     max-width: 120px;
@@ -1885,12 +1890,10 @@ div.fish{
     transform: translateY(-3px);
   }
 }
-
 /*END Fish Animation*/
 
 
 /* Waves */
-
 .waves
 {
   width:100%;
